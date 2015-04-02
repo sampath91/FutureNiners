@@ -222,7 +222,7 @@ loadXMLDoc("user_email.php?id=email&email="+str,function()
 				<!--col-md-4 is used to create the no of colums in the grid also use for medimum and large devices-->
 				<div class="panel panel-success">
 					<div>
-						<h3 class="panel-title" style="color:Blue;font-style:italic">Student Registration</h3>
+						<h3 style="color:Blue;font-style:italic">Student Registration</h3>
 					</div>
 					<div class="panel-body">
 						<form role="form" method="post" action="registration.php"

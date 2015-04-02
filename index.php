@@ -1,4 +1,10 @@
-
+<?php 
+session_start();
+if (isset ( $_SESSION ['user_name'] )) {
+	
+	$usr = $_SESSION['user_name'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +22,19 @@
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
+	<style>
+.login-panel {
+	margin-top: 150px;
+}
+.error
+{
+  color: red;
+}
+.success
+{
+  color: green;
+}
+</style>
 </head>
 <body>
 	<!-- Fixed navbar -->
@@ -53,7 +72,35 @@
 					<li><a href="Programs.php">Programs</a></li>
 				</ul>
 			</div>
-			<!--/.nav-collapse -->
+			
+			<p><?php
+					/**
+					 * ****************** Session MESSAGES*************************************************
+					 * This code is to show session messages
+					 * ************************************************************************
+					 */
+					if (! empty ( $usr )) {
+						echo "<div align = right class= \" success\">";
+// 						foreach ( $usr as $e ) {
+// 							echo "$e <br>";
+// 						}
+						echo "Welcome, ". $usr.". ";
+						echo "<a href=\"logout.php\">Sign Out</a>";
+						echo "</div>";
+					}
+					else{
+						echo "<div align=right class= \" success\">";
+						// 						foreach ( $usr as $e ) {
+						// 							echo "$e <br>";
+						// 						}
+						echo "<a href=\"login.php\">Sign In</a>";
+						echo "</div>";
+					}
+					/**
+					 * ***************************** END *******************************
+					 */
+					?></p>
+			<!--/.nav-collapse --><hr>
 		</div>
 	</div>
 	<!-- /.navbar -->
@@ -130,7 +177,7 @@
 							<h4>Faculty</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempus eleifend risus ut congue
 							eset nec lacus elit dor broma.</p>
-     						<p><a href="Faculty.php"><em>Read More →</em></a></p>
+     						<p><a href="Faculty.php"><em>Read More</em></a></p>
 						</div><!--grey box -->
 					</div><!--/span3-->
 					
