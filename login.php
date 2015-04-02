@@ -195,8 +195,8 @@ if (isset ( $_POST ['login'] )) {
 						<div class="panel-body">
 							<p class="simplenav">
 								<a href="index.php">Home</a> | 
-								<a href="ApplicationReq.php">Departments</a> |
-								<a href="Program.php">Program</a> |
+								<a href="ListofDepts.php">Departments</a> |
+								<a href="Programs.php">Program</a> |
 								<a href="Contact.php">Contact</a> 			|
 								<a href="#"><i class="fa fa-twitter"></i></a>
 								<a href="#"><i class="fa fa-facebook"></i></a>
@@ -222,7 +222,7 @@ if (isset ( $_POST ['login'] )) {
 			</div>
 		<!-- </div>-->
 	</footer>
-	
+
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	<script src="assets/js/modernizr-latest.js"></script> 
 	<script type='text/javascript' src='assets/js/jquery.min.js'></script>
@@ -233,7 +233,7 @@ if (isset ( $_POST ['login'] )) {
     <script type='text/javascript' src='assets/js/camera.min.js'></script> 
     <script src="assets/js/bootstrap.min.js"></script> 
 	<script src="assets/js/custom.js"></script>
-	<script>
+    <script>
 		jQuery(function(){
 			
 			jQuery('#camera_wrap_4').camera({
@@ -253,8 +253,7 @@ if (isset ( $_POST ['login'] )) {
 		});
       
 	</script>
+    
 </body>
-
 </html>
-
-
+					

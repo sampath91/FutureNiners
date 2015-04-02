@@ -132,8 +132,8 @@ if (isset ( $_SESSION ['user_name'] )) {
 						<div class="panel-body">
 							<p class="simplenav">
 								<a href="index.php">Home</a> | 
-								<a href="ApplicationReq.php">Departments</a> |
-								<a href="Program.php">Program</a> |
+								<a href="ListofDepts.php">Departments</a> |
+								<a href="Programs.php">Program</a> |
 								<a href="Contact.php">Contact</a> 			|
 								<a href="#"><i class="fa fa-twitter"></i></a>
 								<a href="#"><i class="fa fa-facebook"></i></a>
