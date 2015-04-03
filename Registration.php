@@ -17,28 +17,29 @@ if (isset ( $_POST ['register'] )) {
 	$user_line2 = $_POST ['line2']; // same
 	$user_city = $_POST ['city']; // same
 	$user_state = $_POST ['state']; // same
+	$user_zip = $_POST ['zip']; // same
 	$user_country = $_POST ['country']; // same
 	
-	if($user_name=='')
-	                             {
-	                             //javascript use for input checking
-	                             echo"<script>alert('Please enter the name')</script>";
-	                             //$err [] = "Error - Please enter valid username";
+// 	if($user_name=='')
+// 	                             {
+// 	                             //javascript use for input checking
+// 	                             echo"<script>alert('Please enter the name')</script>";
+// 	                             //$err [] = "Error - Please enter valid username";
 	                             
-	exit();//this use if first is not work then other will not show
-	                             }
+// 	//exit();//this use if first is not work then other will not show
+// 	                             }
 	                             
-	if($user_pass=='')
-	                             {
-	                             echo"<script>alert('Please enter the password')</script>";
-	                            exit();
-	                             }
+// 	if($user_pass=='')
+// 	                             {
+// 	                             echo"<script>alert('Please enter the password')</script>";
+// 	                            exit();
+// 	                             }
 	                             
-	if($user_email=='')
-	                             {
-	                             echo"<script>alert('Please enter the email')</script>";
-	                            exit();
-	                             }
+// 	if($user_email=='')
+// 	                             {
+// 	                             echo"<script>alert('Please enter the email')</script>";
+// 	                            exit();
+// 	                             }
 	                             
 	// here query check weather if user already registered so can't register again.
 	$check_email_query = "select * from users WHERE username='$user_name'";
@@ -49,26 +50,42 @@ if (isset ( $_POST ['register'] )) {
 		exit();
 	}
 	// insert the user into the database.
-	$insert_user = "insert into users (Username, Password, PhoneNumber, Email, 
-	Gender, fName, lName, mName, DOB, AddressLine1, AddressLine2, City, State, Country) 
+	$insert_user = "insert into users (Username, Password, PhoneNumber, Email, Gender,
+	 fName, lName, mName, DOB, AddressLine1, AddressLine2, City, State, ZIP, Country) 
 	VALUES ('$user_name','$user_pass','$user_phonenumber','$user_email','$user_gender','$user_fname',
-	'$user_lname','$user_mname','$user_dob','$user_line1','$user_line2','$user_city','$user_state','$user_country')";
+	'$user_lname','$user_mname','$user_dob','$user_line1','$user_line2','$user_city','$user_state','$user_zip','$user_country')";
 	
-// 	$insert_user = "insert into users (Username, Password, PhoneNumber, Email,
-// 	Gender, fName, lName, mName, DOB, AddressLine1, AddressLine2, City, State, Country)
-// 	VALUES ('samw','asdf','1234567891','sam@email.com','m','safadsf',
-// 	'asdfasfd','asdfasdfa','1991-09-09','asdf','asdfa','adsfa','NC','USA')";
+//  	$insert_user = "insert into users (Username, Password, PhoneNumber, Email, Gender,
+// 	 fName, lName, mName, DOB, AddressLine1, AddressLine2, City, State, ZIP, Country)
+//  	VALUES ('samw','asdf','1234567891','sam@email.com','m','safadsf',
+//  	'asdfasfd','asdfasdfa','1991-09-09','asdf','asdfa','adsfa','NC','28262','USA')";
 	
 
 	
 	$result = mysqli_query ( $dbcon, $insert_user);
+	
 	if ($result) {
-		header ( "Location: index.php" );
-	exit();
+		$insert_user = "select UserID from users where Username='$user_name'";
+		$result = mysqli_query ( $dbcon, $insert_user);
+		if(mysqli_num_rows ( $result ) == 1)
+		{	
+			$data = mysqli_fetch_assoc($result);
+			$insert_user = "insert into student (UserID) VALUES ('$data[UserID]')";
+			$result = mysqli_query ( $dbcon, $insert_user);
+			if($result){
+				header ( "Location: index.php" );
+			exit();
+			}
+		}
+		else{
+			$insert_user = "delete from users where username = '$user_name'";
+			$result = mysqli_query ( $dbcon, $insert_user);
+		}	
 	// echo"<script>window.open('welcome.php','_self')</script>";
-	}else{
-		
-		echo"<script>window.open('registration.php','_self')</script>";
+	}
+	else{
+		$err [] = "Registration unsuccessful";
+	//	echo"<script>window.open('registration.php','_self')</script>";
 		}
 	
 }
@@ -79,7 +96,7 @@ if (isset ( $_POST ['register'] )) {
 <meta charset="UTF-8">
 <link type="text/css" rel="stylesheet"
 	href="bootstrap-3.2.0-dist\css\bootstrap.css">
-<title>Login</title>
+<title>Future Niners</title>
 <link rel="favicon" href="assets/images/favicon.png">
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -229,9 +246,26 @@ loadXMLDoc("user_email.php?id=email&email="+str,function()
 							name="registration" id="registrationid" >
 							<fieldset>
 							<br>
+							<p><?php
+					/**
+					 * ****************** ERROR MESSAGES*************************************************
+					 * This code is to show error messages
+					 * ************************************************************************
+					 */
+					if (! empty ( $err )) {
+						echo "<div class= \" alert alert-danger msg\">";
+						foreach ( $err as $e ) {
+							echo "$e <br>";
+						}
+						echo "</div>";
+					}
+					/**
+					 * ***************************** END *******************************
+					 */
+					?></p>
 								<label for="username">Username*</label>
 								<div class="form-group">
-									<input class="form-control" placeholder="Username" name="username"
+									<input class="form-control compulsory" placeholder="Username" name="username"
 										type="text" id="userid" onkeyup="checkuser(this.value)" autofocus>
 								</div><p>Availablity: <span id="userHint"style="font-weight:bold"></span></p>
 									<input class="form-control" placeholder="Password" name="pass"
@@ -310,7 +344,7 @@ loadXMLDoc("user_email.php?id=email&email="+str,function()
 <option>MD</option><option>MA</option><option>MI</option><option>MN</option>
 <option>MS</option><option>MO</option><option>MT</option><option>NE</option>
 <option>NV</option><option>NH</option><option>NJ</option><option>NM</option>
-<option>NY</option><option>NC</option><option>ND</option><option>MP</option>
+<option>NY</option><option selected>NC</option><option>ND</option><option>MP</option>
 <option>OH</option><option>OK</option><option>OR</option><option>PW</option>
 <option>PA</option><option>PR</option><option>RI</option><option>SC</option>
 <option>SD</option><option>TN</option><option>TX</option><option>UT</option>
@@ -318,28 +352,20 @@ loadXMLDoc("user_email.php?id=email&email="+str,function()
 <option>DC</option><option>WV</option><option>WI</option><option>WY</option>	
 									</select>
 								</div>
+								<label for="zip">Zip*</label>
+								<div class="form-group">
+									<input class="form-control" placeholder="Eg: 28262" name="zip"
+										type="text" value="">
+								</div>
 								<label for="country">Country*</label>
 								<div class="form-group">
-									<input class="form-control" placeholder="Eg: United States" name="country"
-										type="text" value="">
-								</div><hr>
-								<p><?php
-					/**
-					 * ****************** ERROR MESSAGES*************************************************
-					 * This code is to show error messages
-					 * ************************************************************************
-					 */
-					if (! empty ( $err )) {
-						echo "<div class= \" alert alert-danger msg\">";
-						foreach ( $err as $e ) {
-							echo "$e <br>";
-						}
-						echo "</div>";
-					}
-					/**
-					 * ***************************** END *******************************
-					 */
-					?></p>
+									<select  title="Country" class="form-control" id="country" name="country">
+									<option selected>USA</option><option>CHINA</option><option>INDIA</option>
+									<option>JAPAN</option><option>UK</option><option>FRANCE</option>
+									</select>
+								</div>
+								<hr>
+								
 								<div><input class="btn btn-lg btn-success btn-block" type="submit" value="register" name="register"/></div>
 							<br/><div style="width:200px; float:center"><input class="btn btn-lg btn-success btn-block2" type="reset" value="reset" name="reset"/></div>
 							</fieldset>

@@ -111,13 +111,18 @@ if (isset ( $_SESSION ['user_name'] )) {
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing eliras scele!</p>
                 </div>
     </header>
+<div>
 
-    
 
-    
-    
-    
-    
+
+
+
+
+
+
+
+</div>
+ 
     
     
     
