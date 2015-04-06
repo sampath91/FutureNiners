@@ -1,7 +1,9 @@
 <?php
 include ("database/db_connection.php"); // make connection here
+include ("validateuser.php"); 
 
 if (isset ( $_POST ['register'] )) {
+if(validateuser()){
 	$user_name = $_POST ['username']; // here getting result from the post array after submitting the form.
 	$user_pass = $_POST ['pass']; // same
 	$user_email = $_POST ['email']; // same
@@ -15,30 +17,16 @@ if (isset ( $_POST ['register'] )) {
 	$user_line1 = $_POST ['line1']; // same
 	$user_line2 = $_POST ['line2']; // same
 	$user_city = $_POST ['city']; // same
-	$user_state = $_POST ['state']; // same
+	//$user_statetext = $_POST ['statetext']; // same
+	//$user_stateselect = $_POST['stateselect'];
 	$user_zip = $_POST ['zip']; // same
 	$user_country = $_POST ['country']; // same
 	                                    
-	// if($user_name=='')
-	                                    // {
-	                                    // //javascript use for input checking
-	                                    // echo"<script>alert('Please enter the name')</script>";
-	                                    // //$err [] = "Error - Please enter valid username";
-	                                    
-	// //exit();//this use if first is not work then other will not show
-	                                    // }
-	                                    
-	// if($user_pass=='')
-	                                    // {
-	                                    // echo"<script>alert('Please enter the password')</script>";
-	                                    // exit();
-	                                    // }
-	                                    
-	// if($user_email=='')
-	                                    // {
-	                                    // echo"<script>alert('Please enter the email')</script>";
-	                                    // exit();
-	                                    // }
+if($user_country!="USA"){
+	$user_state = $_POST['statetext'];
+}else{
+	$user_state = $_POST['stateselect'];
+}
 	                                    
 	// here query check weather if user already registered so can't register again.
 	$check_email_query = "select * from users WHERE username='$user_name'";
@@ -75,14 +63,21 @@ if (isset ( $_POST ['register'] )) {
 		} else {
 			$insert_user = "delete from users where username = '$user_name'";
 			$result = mysqli_query ( $dbcon, $insert_user );
+			header ( "Location: Registration.php",'_self' );
 		}
 		// echo"<script>window.open('welcome.php','_self')</script>";
 	} else {
 		$err [] = "Registration unsuccessful";
 		// echo"<script>window.open('registration.php','_self')</script>";
 	}
+}else{
+	echo"<script>alert('Enter valid information')</script>";
+	$err [] = "Registration unsuccessful";
+	header ( "Location: Registration.php" );
+exit();
 }
 
+}
 ?>
 <html>
 <head lang="en">
@@ -216,8 +211,29 @@ loadXMLDoc("user_email.php?id=email&email="+str,function()
     }
   });
 }
-</script>
 
+function changestate(str)
+{
+loadXMLDoc("user_email.php?id=country&country="+str,function()
+  {
+	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+	    if(xmlhttp.responseText == true){
+	    	document.getElementById("statetext").className = "form-control";
+	    	document.getElementById("stateselect").className = "form-control hidden";
+	    	document.getElementById("stateselect").value = "";	                
+		}
+	    else{
+	    	document.getElementById("statetext").className = "form-control hidden";
+	    	document.getElementById("statetext").value = "";
+	    	}
+    }
+  });
+}
+
+
+</script>
+<!-- <script src="bootstrap-3.2.0-dist/js/script.js"></script> -->
 	<title>Registration</title>
 
 
@@ -242,11 +258,7 @@ loadXMLDoc("user_email.php?id=email&email="+str,function()
 						<h3 style="color: Blue; font-style: italic">Student Registration</h3>
 					</div>
 					<div class="panel-body">
-						<form role="form" method="post" action="registration.php"
-							name="registration" id="registrationid">
-							<fieldset>
-								<br>
-								<p><?php
+						<div><?php
 								/**
 								 * ****************** ERROR MESSAGES*************************************************
 								 * This code is to show error messages
@@ -262,7 +274,12 @@ loadXMLDoc("user_email.php?id=email&email="+str,function()
 								/**
 								 * ***************************** END *******************************
 								 */
-								?></p>
+								?></div>
+						<form role="form" method="post" action="Registration.php"
+							name="registration" id="registrationid" >
+							<fieldset>
+								<br>
+								
 								<label for="username">Username*</label>
 								<div class="form-group">
 									<input class="form-control compulsory" placeholder="Username"
@@ -270,7 +287,7 @@ loadXMLDoc("user_email.php?id=email&email="+str,function()
 										onkeyup="checkuser(this.value)" autofocus>
 								</div>
 								<p>
-									Availablity: <span id="userHint" style="font-weight: bold"></span>
+									Availablity: <span id="userHint" style="font-weight: bold">Not Available</span>
 								</p>
 								<input class="form-control" placeholder="Password" name="pass"
 									type="password" value=""><br> <input class="form-control"
@@ -284,7 +301,7 @@ loadXMLDoc("user_email.php?id=email&email="+str,function()
 										onkeyup="checkemail(this.value)" autofocus>
 								</div>
 								<p>
-									Availablity: <span id="emailHint" style="font-weight: bold"></span>
+									Availablity: <span id="emailHint" style="font-weight: bold">Not available</span>
 								</p>
 								<!-- 								<label for="password">Password*</label>								 -->
 								<!-- 								<div class="form-group"> -->
@@ -340,9 +357,23 @@ loadXMLDoc("user_email.php?id=email&email="+str,function()
 									<input class="form-control" placeholder="Eg: Charlotte"
 										name="city" type="text" value="">
 								</div>
+									<label for="country">Country*</label>
+								<div class="form-group">
+									<select title="Country" class="form-control" id="country"
+										name="country" onchange="changestate(this.value)">
+										<option>USA</option>
+										<option>CHINA</option>
+										<option>INDIA</option>
+										<option>JAPAN</option>
+										<option>UK</option>
+										<option>FRANCE</option>
+									</select>
+								</div>
 								<label for="State">State*</label>
 								<div class="form-group">
-									<select class="form-control" id="state" name="state">
+									<input class="form-control hidden" placeholder="Eg: Delhi"
+										name="statetext" id = "statetext" type="text" value="">
+									<select class="form-control" id="stateselect" name="stateselect">
 										<option>AL</option>
 										<option>AK</option>
 										<option>AS</option>
@@ -410,23 +441,12 @@ loadXMLDoc("user_email.php?id=email&email="+str,function()
 									<input class="form-control" placeholder="Eg: 28262" name="zip"
 										type="text" value="">
 								</div>
-								<label for="country">Country*</label>
-								<div class="form-group">
-									<select title="Country" class="form-control" id="country"
-										name="country">
-										<option selected>USA</option>
-										<option>CHINA</option>
-										<option>INDIA</option>
-										<option>JAPAN</option>
-										<option>UK</option>
-										<option>FRANCE</option>
-									</select>
-								</div>
+							
 								<hr>
 
 								<div>
 									<input class="btn btn-lg btn-success btn-block" type="submit"
-										value="register" name="register" />
+									 value="register" name="register"/>
 								</div>
 								<br />
 								<div style="width: 200px; float: center">

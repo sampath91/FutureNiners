@@ -29,4 +29,17 @@ if ($_REQUEST ["id"] == "email") {
 	echo $hint;
 }
 
+if ($_REQUEST ["id"] == "country") {
+
+	$user_country = $_REQUEST ["country"]; // same
+	if($user_country == "USA"){
+		$hint = false;	
+	}else{
+		$hint=true;
+	}
+	
+	echo $hint;
+}
+
+
 ?>
