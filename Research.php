@@ -1,40 +1,67 @@
-<?php 
-session_start();
+<?php
+session_start ();
 if (isset ( $_SESSION ['user_name'] )) {
 	
-	$usr = $_SESSION['user_name'];
+	$usr = $_SESSION ['user_name'];
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Future Niners</title>
-	<link rel="favicon" href="assets/images/favicon.png">
-	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/font-awesome.min.css"> 
-	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen"> 
-	<link rel="stylesheet" href="assets/css/style.css">
-    <link rel='stylesheet' id='camera-css'  href='assets/css/camera.css' type='text/css' media='all'> 
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
+<meta charset="utf-8">
+<title>Future Niners</title>
+<link rel="favicon" href="assets/images/favicon.png">
+<link rel="stylesheet" media="screen"
+	href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/css/bootstrap-theme.css"
+	media="screen">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel='stylesheet' id='camera-css' href='assets/css/camera.css'
+	type='text/css' media='all'>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
-	<style>
+<style>
 .login-panel {
 	margin-top: 150px;
 }
-.error
-{
-  color: red;
+
+.error {
+	color: red;
 }
-.success
-{
-  color: green;
+
+.success {
+	color: green;
 }
 </style>
+<script>
+//This Ajax Redirect to _SELF and excute php to display Job Information for selected Department
+function showcontent(str) {
+    if (str == "") {
+        document.getElementById("txtHint").innerHTML = "List of Research opportunities under a department will be listed here...";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","Displayresearch.php?q="+str,true);
+        xmlhttp.send();
+    }
+}
+</script>
 </head>
 <body>
 	<!-- Fixed navbar -->
@@ -42,23 +69,26 @@ if (isset ( $_SESSION ['user_name'] )) {
 		<div class="container">
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-				<a class="navbar-brand" href="index.php">
-					<img src="assets/images/logo.png" alt="Techro HTML5 template"></a>
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="icon-bar"></span><span class="icon-bar"></span><span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.php"> <img
+					src="assets/images/logo.png" alt="Techro HTML5 template"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right mainNav">
 					<li class="active"><a href="index.php">Home</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Apply <b class="caret"></b></a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Apply <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="ApplicationReq.php">Application Requirements</a></li>
 							<li><a href="Apply.php">Apply</a></li>
 							<li><a href="Myapplications.php">My Applications</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Departments<b class="caret"></b></a>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Departments<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="ListofDepts.php">List of Departments</a></li>
 							<li><a href="Facilities.php">Facilities</a></li>
@@ -67,110 +97,139 @@ if (isset ( $_SESSION ['user_name'] )) {
 							<li><a href="Research.php">Research</a></li>
 							<li><a href="Faculty.php">Faculty</a></li>
 							<li><a href="Jobs.php">Jobs</a></li>
-						</ul>
-					</li>
+						</ul></li>
 					<li><a href="Programs.php">Programs</a></li>
 				</ul>
 			</div>
-			
+
 			<p><?php
-					/**
-					 * ****************** Session MESSAGES*************************************************
-					 * This code is to show session messages
-					 * ************************************************************************
-					 */
-					if (! empty ( $usr )) {
-						echo "<div align = right class= \" success\">";
-// 						foreach ( $usr as $e ) {
-// 							echo "$e <br>";
-// 						}
-						echo "Welcome, ". $usr.". ";
-						echo "<a href=\"logout.php\">Sign Out</a>";
-						echo "</div>";
-					}
-					else{
-						echo "<div align=right class= \" success\">";
-						// 						foreach ( $usr as $e ) {
-						// 							echo "$e <br>";
-						// 						}
-						echo "<a href=\"login.php\">Sign In</a>";
-						echo "</div>";
-					}
-					/**
-					 * ***************************** END *******************************
-					 */
-					?></p>
-			<!--/.nav-collapse --><hr>
+			/**
+			 * ****************** Session MESSAGES*************************************************
+			 * This code is to show session messages
+			 * ************************************************************************
+			 */
+			if (! empty ( $usr )) {
+				echo "<div align = right class= \" success\">";
+				// foreach ( $usr as $e ) {
+				// echo "$e <br>";
+				// }
+				echo "Welcome, " . $usr . ". ";
+				echo "<a href=\"logout.php\">Sign Out</a>";
+				echo "</div>";
+			} else {
+				echo "<div align=right class= \" success\">";
+				// foreach ( $usr as $e ) {
+				// echo "$e <br>";
+				// }
+				echo "<a href=\"login.php\">Sign In</a>";
+				echo "</div>";
+			}
+			/**
+			 * ***************************** END *******************************
+			 */
+			?></p>
+			<!--/.nav-collapse -->
+			<hr>
 		</div>
 	</div>
 	<!-- /.navbar -->
 
-		<header id="head" class="secondary">
-            <div class="container">
-                    <h1>Research Oppurtunities</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing eliras scele!</p>
-                </div>
-    </header>
+	<header id="head" class="secondary">
+		<div class="container">
+			<h1>Research Opportunities</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing eliras scele!</p>
+		</div>
+	</header>
+	<div>
+		<section class="container">
 
+			<div class="row">
 
+				<!-- Article main content -->
+				<content class="maincontent"> <br>
+<?php
+include "database/db_connection.php";
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-<footer class="footer2">	
-		<!-- <div class="footer2"> -->
-			<div class="container">
-				<div class="row">
+$sql = "select DeptName from department";
+$result = mysqli_query ( $dbcon, $sql );
 
-					<div class="col-md-6 panel">
-						<div class="panel-body">
-							<p class="simplenav">
-								<a href="index.php">Home</a> | 
-								<a href="ListofDepts.php">Departments</a> |
-								<a href="Programs.php">Program</a> |
-								<a href="Contact.php">Contact</a> 			|
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-facebook"></i></a>
-								<a href="#"><i class="fa fa-dribbble"></i></a>
-								<a href="#"><i class="fa fa-flickr"></i></a>
-								<a href="#"><i class="fa fa-github"></i></a>
-			
-							</p>
-			
-										</div>
-					</div>
+if (mysqli_num_rows ( $result ) > 0) {
+	echo "<form><select name=\"Dept\" onchange=\"showcontent(this.value)\">";
+	echo "<option value=\"\">Select a Department:</option>";
+	while ( $row = mysqli_fetch_assoc ( $result ) ) {
+		echo "<option>" . $row ["DeptName"] . "</option>";
+	}
+	echo "</select></form>";
+}
 
-					<div class="col-md-6 panel">
-						<div class="panel-body">
-							<p class="text-right">
-								Copyright &copy; 2015. Designed by <a href="http://uncc.edu/" rel="develop">FutureNiners.com</a>
-							</p>
-						</div>
-					</div>
+?>
+<br>
+				<div id="txtHint">
+					<b>List of Research opportunities under a department will be listed
+						here...</b>
+
 
 				</div>
-				<!-- /row of panels -->
+
+				</content>
 			</div>
+		</section>
+	</div>
+
+
+
+
+
+
+	<footer class="footer2">
+		<!-- <div class="footer2"> -->
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-6 panel">
+					<div class="panel-body">
+						<p class="simplenav">
+							<a href="index.php">Home</a> | <a href="ListofDepts.php">Departments</a>
+							| <a href="Programs.php">Program</a> | <a href="Contact.php">Contact</a>
+							| <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
+								class="fa fa-facebook"></i></a> <a href="#"><i
+								class="fa fa-dribbble"></i></a> <a href="#"><i
+								class="fa fa-flickr"></i></a> <a href="#"><i
+								class="fa fa-github"></i></a>
+
+						</p>
+
+					</div>
+				</div>
+
+				<div class="col-md-6 panel">
+					<div class="panel-body">
+						<p class="text-right">
+							Copyright &copy; 2015. Designed by <a href="http://uncc.edu/"
+								rel="develop">FutureNiners.com</a>
+						</p>
+					</div>
+				</div>
+
+			</div>
+			<!-- /row of panels -->
+		</div>
 		<!-- </div>-->
 	</footer>
 
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-	<script src="assets/js/modernizr-latest.js"></script> 
+	<script src="assets/js/modernizr-latest.js"></script>
 	<script type='text/javascript' src='assets/js/jquery.min.js'></script>
-    <script type='text/javascript' src='assets/js/fancybox/jquery.fancybox.pack.js'></script>
-    
-    <script type='text/javascript' src='assets/js/jquery.mobile.customized.min.js'></script>
-    <script type='text/javascript' src='assets/js/jquery.easing.1.3.js'></script> 
-    <script type='text/javascript' src='assets/js/camera.min.js'></script> 
-    <script src="assets/js/bootstrap.min.js"></script> 
+	<script type='text/javascript'
+		src='assets/js/fancybox/jquery.fancybox.pack.js'></script>
+
+	<script type='text/javascript'
+		src='assets/js/jquery.mobile.customized.min.js'></script>
+	<script type='text/javascript' src='assets/js/jquery.easing.1.3.js'></script>
+	<script type='text/javascript' src='assets/js/camera.min.js'></script>
+	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/custom.js"></script>
-    <script>
+	<script>
 		jQuery(function(){
 			
 			jQuery('#camera_wrap_4').camera({
@@ -190,7 +249,6 @@ if (isset ( $_SESSION ['user_name'] )) {
 		});
       
 	</script>
-    
+
 </body>
 </html>
-    
