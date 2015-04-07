@@ -157,7 +157,7 @@ from Department where DeptName = '$SearchDept');";
 }
 ?>
     
-<div align="center"> <form role="form" action="ListofDepts.php" method="">
+<div align="center"> <form role="form" action="ListofDepts.php" method="post">
 			<input class="btn btn-success" type="submit"
 			value="Back to Departments" name="backtodepts"/></form></div>
     
