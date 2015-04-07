@@ -1,3 +1,14 @@
+This project is main purpose is to display content from database which is designed as a part of curriculum for Database systems. This is developed in PHP and MySQL as backend system. 
+
+1. Session maintenance
+2. Login
+3. Registration
+4. Admission applications
+5. Displaying details of College
+
+
+Following are used for web template for responsive webpages.
+
 free-educational-responsive-web-template-webEdu
 -------
 
