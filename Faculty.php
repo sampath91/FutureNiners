@@ -42,7 +42,7 @@ if (isset ( $_SESSION ['user_name'] )) {
 //This Ajax Redirect to _SELF and excute php to display Job Information for selected Department
 function showcontent(str) {
     if (str == "") {
-        document.getElementById("txtHint").innerHTML = "List of Jobs under a department will be listed here...";
+        document.getElementById("txtHint").innerHTML = "List of Faculty Information under a department will be listed here...";
         return;
     } else { 
         if (window.XMLHttpRequest) {

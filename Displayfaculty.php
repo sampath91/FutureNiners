@@ -26,7 +26,7 @@ if (isset ( $_GET ['q'] )) {
 			echo "<hr>";
 		}
 	} else {
-		echo "<p class= \" error\"> Sorry, No Jobs offered currently.</p>";
+		echo "<p class= \" error\"> Sorry, No Faculty Under this department currently.</p>";
 	}
 	echo "</tbody></table>";
 }

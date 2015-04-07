@@ -30,3 +30,9 @@ select DeptName, DeptHead, Contact from Department;
 select CourseID, COURSE_TITLE, CREDIT_HOURS
  from courses where DeptID IN (select DeptID
 from Department where DeptName = 'Electrical Engineering');
+
+
+#Companies visited
+select CompanyName, NoOfStudentsRec from companies where RecruitedYear = 2010 and CompID in (
+select c.CompID from deptrecruitscompanies c join department d on  c.DeptID = d.DeptID where 
+d.DeptName = 'Computer Science Engineering');
