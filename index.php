@@ -25,7 +25,9 @@ if (isset ( $_SESSION ['user_name'] )) {
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
-<style>
+
+	<style>
+
 .login-panel {
 	margin-top: 150px;
 }
@@ -37,7 +39,9 @@ if (isset ( $_SESSION ['user_name'] )) {
 .success {
 	color: green;
 }
-</style>
+
+</style>	
+	
 </head>
 <body>
 	<!-- Fixed navbar -->
