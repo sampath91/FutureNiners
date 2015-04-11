@@ -224,6 +224,8 @@ loadXMLDoc("user_email.php?id=country&country="+str,function()
 	    	document.getElementById("stateselect").value = "";	                
 		}
 	    else{
+	    	document.getElementById("stateselect").className = "form-control";
+	    	document.getElementById("stateselect").value = "";
 	    	document.getElementById("statetext").className = "form-control hidden";
 	    	document.getElementById("statetext").value = "";
 	    	}
