@@ -11,7 +11,7 @@
 							| <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
 								class="fa fa-facebook"></i></a> <a href="#"><i
 								class="fa fa-dribbble"></i></a> <a href="#"><i
-								class="fa fa-flickr"></i></a> <a href="#"><i
+								class="fa fa-flickr"></i></a> <a href="https://github.com/sampath91/FutureNiners"><i
 								class="fa fa-github"></i></a>
 
 						</p>

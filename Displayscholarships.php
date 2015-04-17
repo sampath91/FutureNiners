@@ -18,7 +18,7 @@ if (isset ( $_GET ['q'] )) {
 		
 		// output data of each row
 		while ( $row = mysqli_fetch_assoc ( $result ) ) {
-			echo "<tr align=\"left\" valign=\"top\" style=\"color:blue\"><td>" . $row ["ScholarshipDesc"] . "</td><td>" . $row ["Amount"] . "</td><td>" . $row ["Semester_Year"] . " months" . "</td><td>" . $row ["ProgName"] . "</td></tr>";
+			echo "<tr align=\"left\" valign=\"top\" style=\"color:blue\"><td>" . $row ["ScholarshipDesc"] . "</td><td>" . $row ["Amount"] . "</td><td>" . $row ["Semester_Year"]  . "</td><td>" . $row ["ProgName"] . "</td></tr>";
 		}
 	} else {
 		echo "<p class= \" error\"> Sorry, No Scholarship opportunities available currently.</p>";

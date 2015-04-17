@@ -227,7 +227,7 @@ CREATE TABLE offers_eligible (
   CONSTRAINT offers_eligible_ibfk_2 FOREIGN KEY (ScholarshipID) REFERENCES scholarship (ScholarshipID)
 );
 
-----------------------------------------
+-- --------------------------------------
 
 CREATE TABLE research (
   ResearchID char(5) NOT NULL,

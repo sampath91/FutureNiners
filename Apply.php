@@ -169,7 +169,7 @@ function toeflfunc() {
 					$result = mysqli_query ( $dbcon, $sql );
 					
 					if (mysqli_num_rows ( $result ) > 0) {
-						echo "<select name=\"program\" >";
+						echo "<select name=\"program\" required>";
 						echo "<option value=\"\">Select a Program:</option>";
 						while ( $row = mysqli_fetch_assoc ( $result ) ) {
 							echo "<option>" . $row ["ProgName"] . "</option>";
@@ -187,7 +187,7 @@ function toeflfunc() {
 					$result = mysqli_query ( $dbcon, $sql );
 					
 					if (mysqli_num_rows ( $result ) > 0) {
-						echo "<select name=\"dept\" >";
+						echo "<select name=\"dept\" required>";
 						echo "<option value=\"\">Select a Department:</option>";
 						while ( $row = mysqli_fetch_assoc ( $result ) ) {
 							echo "<option>" . $row ["deptName"] . "</option>";
@@ -212,17 +212,17 @@ function toeflfunc() {
 				</div>
 				<div class="row">
 					<div class="col-md-2" align="left">
-						<b>Quant:&nbsp;</b> <input type="number" min="130" max="170"
+						<b>Quant*:&nbsp;</b> <input type="number" min="130" max="170"
 							id="quantid" value="130" name="quant" onchange="gretotalfunc()"
 							required>
 					</div>
 					<div class="col-md-2" align="left">
-						<b>Verbal:&nbsp;</b> <input type="number" min="130" max="170"
+						<b>Verbal*:&nbsp;</b> <input type="number" min="130" max="170"
 							id="verbalid" value="130" name="verbal" onchange="gretotalfunc()"
 							required>
 					</div>
 					<div class="col-md-2" align="left">
-						<b>AWA:&nbsp;</b> <input type="number" min="0" max="6"
+						<b>AWA*:&nbsp;</b> <input type="number" min="0" max="6"
 							value="0" name="awa" required>
 					</div>
 					<div class="col-md-2" align="left">
@@ -240,22 +240,22 @@ function toeflfunc() {
 				</div>
 				<div class="row">
 					<div class="col-md-2" align="left">
-						<b>Reading:&nbsp;</b> <input type="number" min="10" max="30"
+						<b>Reading*:&nbsp;</b> <input type="number" min="10" max="30"
 							id="readingid" value="10" name="reading" onchange="toeflfunc()"
 							required>
 					</div>
 					<div class="col-md-2" align="left">
-						<b>Speaking:&nbsp;</b> <input type="number" min="10" max="30"
+						<b>Speaking*:&nbsp;</b> <input type="number" min="10" max="30"
 							id="speakingid" value="10" name="speaking" onchange="toeflfunc()"
 							required>
 					</div>
 					<div class="col-md-2" align="left">
-						<b>Listening:&nbsp;</b> <input type="number" min="10" max="30"
+						<b>Listening*:&nbsp;</b> <input type="number" min="10" max="30"
 							id="listeningid" value="10" name="listening" onchange="toeflfunc()"
 							required>
 					</div>
 					<div class="col-md-2" align="left">
-						<b>Writing:&nbsp;</b> <input type="number" min="10" max="30"
+						<b>Writing*:&nbsp;</b> <input type="number" min="10" max="30"
 							id="writingid" value="10" name="writing" onchange="toeflfunc()"
 							required>
 					</div>
@@ -275,11 +275,11 @@ function toeflfunc() {
 				<hr>
 				<div class="row">
 					<div class="col-md-4" align="left">
-						<b><u>UnderGraduation GPA:&nbsp;</u></b> <input type="number"
+						<b><u>UnderGraduation GPA*:&nbsp;</u></b> <input type="number"
 							min="2" max="4" id="gpa" value="2" name="gpa" step=".1" required>/4
 					</div>
 					<div class="col-md-4" align="left">
-						<b><u>High School GPA:&nbsp;</u></b> <input type="number"
+						<b><u>High School GPA*:&nbsp;</u></b> <input type="number"
 							min="2" max="4" id="highschoolgpa" value="2" name="highschoolgpa" step=".1" required>/4
 					</div>
 					<div class="col-md-4" align="left">
@@ -290,7 +290,7 @@ function toeflfunc() {
 				<br>
 				<div class="row">
 					<div class="col-md-6" align="left">
-						<b><u>Recommendation:&nbsp;</u></b>
+						<b><u>Recommendation*(provide 2 recommendations):&nbsp;</u></b>
 					</div>
 				</div>
 				<br>
