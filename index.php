@@ -1,5 +1,25 @@
 <?php include("header.php")?>
 
+	<header id="head">
+		<div class="container">
+             <div class="heading-text">							
+							<p>A place where luck meets an opportunity </p>
+						</div>
+            
+					<div class="fluid_container">                       
+                    <div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4">
+                        <div data-thumb="assets/images/slides/thumbs/img1.jpg" data-src="assets/images/slides/img1.jpg">
+                            <h2>We develop.</h2>
+                        </div> 
+                        <div data-thumb="assets/images/slides/thumbs/img2.jpg" data-src="assets/images/slides/img2.jpg">
+                        </div>
+                        <div data-thumb="assets/images/slides/thumbs/img3.jpg" data-src="assets/images/slides/img3.jpg">
+                        </div> 
+                    </div> 
+                </div>
+		</div>
+	</header>
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-3">
@@ -111,7 +131,7 @@
 
 		<div class="col-md-4">
 			<div class="title-box clearfix todo">
-				<h2 class="title-box_primary">Up Coming Courses</h2>
+				<h2 class="title-box_primary">Up Coming Events</h2>
 			</div>
 			<div class="list styled custom-list">
 				<ul>
