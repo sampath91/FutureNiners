@@ -150,7 +150,14 @@ exit();
 							<li><a href="Faculty.php">Faculty</a></li>
 							<li><a href="Jobs.php">Jobs</a></li>
 						</ul></li>
-					<li><a href="Programs.php">Programs</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Programs<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="Tuitionfee.php">Tuition Fees</a></li>
+							<li><a href="programs.php">Program Listing</a></li>
+						</ul>
+					
+					<li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -235,7 +242,17 @@ loadXMLDoc("user_email.php?id=country&country="+str,function()
 
 
 </script>
-<!-- <script src="bootstrap-3.2.0-dist/js/script.js"></script> -->
+<script type='text/javascript'>
+function check(input) {
+if (input.value != document.getElementById('pass').value) {
+input.setCustomValidity('Password Must be Matching.');
+} else {
+// input is valid -- reset the error message
+input.setCustomValidity('');
+}
+}
+</script>
+	<!-- <script src="bootstrap-3.2.0-dist/js/script.js"></script> -->
 	<title>Registration</title>
 
 
@@ -286,21 +303,22 @@ loadXMLDoc("user_email.php?id=country&country="+str,function()
 								<div class="form-group">
 									<input class="form-control compulsory" placeholder="Username"
 										name="username" type="text" id="userid"
-										onkeyup="checkuser(this.value)" autofocus>
+										onkeyup="checkuser(this.value)" autofocus required>
 								</div>
 								<p>
 									Availablity: <span id="userHint" style="font-weight: bold">Not Available</span>
 								</p>
-								<input class="form-control" placeholder="Password" name="pass"
-									type="password" value=""><br> <input class="form-control"
+								<input class="form-control" placeholder="Password" id="pass" name="pass"
+									type="password" value="" required><br> 
+								<input class="form-control"
 									placeholder="Re-enter Password" name="pass2" type="password"
-									value="">
+									value="" oninput="check(this)" required>
 								<hr>
 								<label for="email">E-Mail*</label>
 								<div class="form-group">
 									<input class="form-control" placeholder="sam@uncc.edu"
 										name="email" id="emailid" type="email"
-										onkeyup="checkemail(this.value)" autofocus>
+										onkeyup="checkemail(this.value)" autofocus required>
 								</div>
 								<p>
 									Availablity: <span id="emailHint" style="font-weight: bold">Not available</span>
@@ -314,12 +332,12 @@ loadXMLDoc("user_email.php?id=country&country="+str,function()
 								<label for="fname">First name*</label>
 								<div class="form-group">
 									<input class="form-control" placeholder="Sam" name="fname"
-										type="text" value="">
+										type="text" value="" required>
 								</div>
 								<label for="lname">Last Name*</label>
 								<div class="form-group">
 									<input class="form-control" placeholder="Peter" name="lname"
-										type="text" value="">
+										type="text" value="" required>
 								</div>
 								<label for="mname">Middle Name</label>
 								<div class="form-group">
@@ -328,25 +346,25 @@ loadXMLDoc("user_email.php?id=country&country="+str,function()
 								</div>
 								<label for="gender">Gender*</label>
 								<div class="radio">
-									<label><input type="radio" name="gender" value="M">Male</label>
-									<label><input type="radio" name="gender" value="F">Female</label>
+									<label><input type="radio" name="gender" value="M" required>Male</label>
+									<label><input type="radio" name="gender" value="F" >Female</label>
 								</div>
 								<label for="dob">Date of Birth (YYYY-MM-DD)*</label>
 								<div class="form-group">
 									<input class="form-control" placeholder="1991-08-23" name="dob"
-										type="date" min="1950-01-01" max="2000-01-02" value="">
+										type="date" min="1950-01-01" max="2000-01-02" value="" required>
 								</div>
 								<hr>
 								<label for="phonenumber">Phone Number (XXX-XXX-XXXX)*</label>
 								<div class="form-group">
 									<input class="form-control" placeholder="PhoneNumber*"
-										name="phonenumber" type="text">
+										name="phonenumber" type="text" required pattern="^\d{3}-\d{3}-\d{4}$">
 								</div>
 								<label for="line1">Address Line 1*</label>
 								<div class="form-group">
 									<input class="form-control"
 										placeholder="9312 Kittansett Dr. Apt X" name="line1"
-										type="text" value="">
+										type="text" value="" required>
 								</div>
 								<label for="line2">Address Line 2</label>
 								<div class="form-group">
@@ -357,12 +375,12 @@ loadXMLDoc("user_email.php?id=country&country="+str,function()
 								<label for="city">City*</label>
 								<div class="form-group">
 									<input class="form-control" placeholder="Eg: Charlotte"
-										name="city" type="text" value="">
+										name="city" type="text" value="" required>
 								</div>
 									<label for="country">Country*</label>
 								<div class="form-group">
 									<select title="Country" class="form-control" id="country"
-										name="country" onchange="changestate(this.value)">
+										name="country" onchange="changestate(this.value)" required>
 										<option>USA</option>
 										<option>CHINA</option>
 										<option>INDIA</option>
@@ -374,7 +392,7 @@ loadXMLDoc("user_email.php?id=country&country="+str,function()
 								<label for="State">State*</label>
 								<div class="form-group">
 									<input class="form-control hidden" placeholder="Eg: Delhi"
-										name="statetext" id = "statetext" type="text" value="">
+										name="statetext" id = "statetext" type="text" value="" >
 									<select class="form-control" id="stateselect" name="stateselect">
 										<option>AL</option>
 										<option>AK</option>
@@ -441,7 +459,7 @@ loadXMLDoc("user_email.php?id=country&country="+str,function()
 								<label for="zip">Zip*</label>
 								<div class="form-group">
 									<input class="form-control" placeholder="Eg: 28262" name="zip"
-										type="text" value="">
+										type="text" value="" required pattern="^\d{5}$">
 								</div>
 							
 								<hr>

@@ -20,44 +20,80 @@ if (isset ( $_POST ['login'] )) {
 		$user_username = $data ['username'];
 		$user_pass = $data ['pass'];
 		
-		$check_user_sql = "select userid,username,password from users WHERE Username='$user_username'AND Password='$user_pass'";
+		$check_user_sql = "select userid,username,password,email,fname,mname,lname from users WHERE Username='$user_username'AND Password='$user_pass'";
 		
 		$result = mysqli_query ( $dbcon, $check_user_sql );
 		
 		// Match row found with more than 1 results - the user is authenticated.
 		if (mysqli_num_rows ( $result ) > 0) {
 			
-			list ( $userid, $username, $password ) = mysqli_fetch_row ( $result );
+			list ( $userid, $username, $password, $email, $fname, $mname, $lname ) = mysqli_fetch_row ( $result );
 			// echo $username;
 			// check against salt
-			$check_user_sql = "select userid from student WHERE UserID='$userid'";
-			
-			$result2 = mysqli_query ( $dbcon, $check_user_sql );
-			if (mysqli_num_rows ( $result2 ) == 1) {
+			if ($_POST ['type'] == 'student') {
+				$check_user_sql = "select userid,sid from student WHERE UserID='$userid'";
 				
-				$pwd = PwdHash ( $password, substr ( $password, 0, 9 ) );
-				if ($pwd === PwdHash ( $user_pass, substr ( $password, 0, 9 ) )) {
-					session_start ();
-					
-					session_regenerate_id ( true ); // prevent against session fixation attacks.
-					                                
-					// this sets variables in the session
-					$_SESSION ['user_name'] = $username;
-					// $_SESSION['user_level'] = $user_level;
-					$_SESSION ['HTTP_USER_AGENT'] = md5 ( $_SERVER ['HTTP_USER_AGENT'] );
-					// $_SESSION['user'] = $user;
-					
-					header ( "Location: index.php" );
-				} else {
-					// $msg = urlencode("Invalid Login. Please try again with correct user email and password. ");
-					$err [] = "Invalid Login. Please try again with correct user email and password.";
-					// header("Location: login.php");
+				$result2 = mysqli_query ( $dbcon, $check_user_sql );
+				if (mysqli_num_rows ( $result2 ) == 1) {
+					list ( $userid2, $sid ) = mysqli_fetch_row ( $result2 );
+					$pwd = PwdHash ( $password, substr ( $password, 0, 9 ) );
+					if ($pwd === PwdHash ( $user_pass, substr ( $password, 0, 9 ) )) {
+						session_start ();
+						
+						session_regenerate_id ( true ); // prevent against session fixation attacks.
+						                                
+						// this sets variables in the session
+						$_SESSION ['user_name'] = $username;
+						$_SESSION ['user_email'] = $email;
+						$_SESSION ['user_fname'] = $fname;
+						$_SESSION ['user_mname'] = $mname;
+						$_SESSION ['user_lname'] = $lname;
+						$_SESSION ['sid'] = $sid;
+						// $_SESSION['user_level'] = $user_level;
+						$_SESSION ['HTTP_USER_AGENT'] = md5 ( $_SERVER ['HTTP_USER_AGENT'] );
+						// $_SESSION['user'] = $user;
+						header ( "Location: index.php" );
+					} else {
+						// $msg = urlencode("Invalid Login. Please try again with correct user email and password. ");
+						$err [] = "Invalid Login. Please try again with correct user email and password.";
+						 header("Location: login.php");
+					}
+				}
+			}
+			if ($_POST ['type'] == 'recruiter') {
+				$check_user_sql = "select userid,recid from recruiter WHERE UserID='$userid'";
+				
+				$result2 = mysqli_query ( $dbcon, $check_user_sql );
+				if (mysqli_num_rows ( $result2 ) == 1) {
+					list ( $userid2, $recid ) = mysqli_fetch_row ( $result2 );
+					$pwd = PwdHash ( $password, substr ( $password, 0, 9 ) );
+					if ($pwd === PwdHash ( $user_pass, substr ( $password, 0, 9 ) )) {
+						session_start ();
+						
+						session_regenerate_id ( true ); // prevent against session fixation attacks.
+						                                
+						// this sets variables in the session
+						$_SESSION ['user_name'] = $username;
+						$_SESSION ['user_email'] = $email;
+						$_SESSION ['user_fname'] = $fname;
+						$_SESSION ['user_mname'] = $mname;
+						$_SESSION ['user_lname'] = $lname;
+						$_SESSION ['recid'] = $recid;
+						// $_SESSION['user_level'] = $user_level;
+						$_SESSION ['HTTP_USER_AGENT'] = md5 ( $_SERVER ['HTTP_USER_AGENT'] );
+						// $_SESSION['user'] = $user;
+						header ( "Location: recruiterappreview.php" );
+					} else {
+						// $msg = urlencode("Invalid Login. Please try again with correct user email and password. ");
+						$err [] = "Invalid Login. Please try again with correct user email and password.";
+						 header("Location: login.php");
+					}
 				}
 			}
 		} else {
 			$err [] = "Error - Invalid login. No such user exists";
-			// echo "<script>alert('username or password is incorrect!')</script>";
-			// header("Location: login.php");
+			 echo "<script>alert('username or password is incorrect!')</script>";
+		 header("Location: login.php",'_self');
 		}
 	}
 }
@@ -108,7 +144,7 @@ if (isset ( $_POST ['login'] )) {
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right mainNav">
-					<li class="active"><a href="index.php">Home</a></li>
+					<li><a href="index.php">Home</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Apply <b class="caret"></b></a>
 						<ul class="dropdown-menu">
@@ -127,7 +163,14 @@ if (isset ( $_POST ['login'] )) {
 							<li><a href="Faculty.php">Faculty</a></li>
 							<li><a href="Jobs.php">Jobs</a></li>
 						</ul></li>
-					<li><a href="Programs.php">Programs</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Programs<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="Tuitionfee.php">Tuition Fees</a></li>
+							<li><a href="programs.php">Program Listing</a></li>
+						</ul>
+					
+					<li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -171,22 +214,22 @@ if (isset ( $_POST ['login'] )) {
 									<input class="form-control" placeholder="password" name="pass"
 										type="password" value="">
 								</div>
-
+								<div class="form-group" align="center">
+								<input type="radio" name="type" value="student" required>Student
+								<input type="radio" name="type" value="recruiter">Recruiter
+								</div>
 
 								<input class="btn btn-lg btn-success btn-block" type="submit"
 									value="login" name="login">
-
-								<!-- Change this to a button or input when using this as a form -->
-								<!--  <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a> -->
-							</fieldset>
-						</form>
-						<center>
-							<b>New User ?</b> </b><a href="Registration.php">Sign Up</a>
-						</center>
-					</div>
+						</fieldset>
+					</form>
+					<center>
+						<b>New User ?</b><a href="Registration.php">Sign Up</a>
+					</center>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<br>
 	<footer class="footer2">

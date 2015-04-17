@@ -26,24 +26,6 @@ page_protect ();
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
-	
-	<style>
-
-.login-panel {
-	margin-top: 150px;
-}
-
-.error {
-	color: red;
-}
-
-.success {
-	color: green;
-}
-
-.todo {color:red;}
-
-</style>
 </head>
 <body>
 	<!-- Fixed navbar -->
@@ -56,38 +38,12 @@ page_protect ();
 					<span class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.php"> <img
+				<a class="navbar-brand" href="RecruiterAppReview.php"> <img
 					src="assets/images/logo.png" alt="Techro HTML5 template"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right mainNav">
-					<li><a href="index.php">Home</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Apply <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="ApplicationReq.php">Application Requirements</a></li>
-							<li><a href="Apply.php">Apply</a></li>
-							<li><a href="Myapplications.php">My Applications</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Departments<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="ListofDepts.php">List of Departments</a></li>
-							<li><a href="Facilities.php">Facilities</a></li>
-							<li><a href="VisitingCompanies.php">Visiting Companies</a></li>
-							<li><a href="Scholarships.php">Scholarships</a></li>
-							<li><a href="Research.php">Research</a></li>
-							<li><a href="Faculty.php">Faculty</a></li>
-							<li><a href="Jobs.php">Jobs</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Programs<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="Tuitionfee.php">Tuition Fees</a></li>
-							<li><a href="programs.php">Program Listing</a></li>
-						</ul>
-					
-					<li>
+					<li class="active"><a href="RecruiterAppReview.php">Home</a></li>
 					<li><a href="logout.php">Sign Out</a></li>
 				</ul>
 			</div>
@@ -98,10 +54,14 @@ page_protect ();
 
 	<header id="head" class="secondary">
 		<div class="container">
-			<h1>My Applications</h1>
-			<p>Your applications for bright future!</p>
+			<h1>Application Review</h1>
+			<p>Applications to be reviewed!</p>
 		</div>
 	</header>
+
+
+
+
 
 
 	<div>
@@ -115,26 +75,22 @@ page_protect ();
 <?php
 
 $username=$_SESSION['user_name'];
-$sid = $_SESSION['sid'];
-$sql = "SELECT A.ApplicationId AS AppId, P.Degree AS deg, P.ProgName AS pname, A.ApplicationDATE AS appldate, 
-		A.Status AS stat FROM Application A, Applies B, Program P
-		 WHERE 
-		A.ApplicationID=B.ApplicationID AND P.ProgID=B.ProgID AND B.SID='$sid'";
+$sql = "SELECT A.ApplicationId AS AppId, P.Degree AS deg, P.ProgName AS pname, A.ApplicationDATE AS appldate, A.Status AS stat, HighSchoolGPA , SATScore, UndergradGPA, GREscore, TOEFLscore, IELTSscore, Email, City, State, Country FROM Application A, Applies B, Program P, Student S, Users U WHERE A.ApplicationID=B.ApplicationID AND P.ProgID=B.ProgID AND S.SID=B.SID AND S.UserId=U.UserId AND A.RecID = (SELECT RecID FROM Recruiter R, Users U WHERE R.UserID=U.UserID AND U.Username='".$_SESSION['user_name']."');";
 
 	$result = mysqli_query ( $dbcon, $sql );
 	if (mysqli_num_rows ( $result ) > 0) {
 		
-	echo "<table class=\"table \" summary=\"Table\" border=\"0\" cellspacing=\"2\" cellpadding=\"1\">
+	echo "<table class=\"table table-striped\" summary=\"Table\" border=\"1\" cellspacing=\"2\" cellpadding=\"1\">
 		<thead><tr align=\"left\" valign=\"top\" style=\"color:black;font-style:regular\"><th>Application ID*</th>
-<th>Degree</th><th>Program Name</th><th>Application Date</th><th>Application Status</th>
+<th>Degree</th><th>Program Name</th><th>Application Date</th><th>Application Status</th><th>HighSchool GPA</th><th>SAT Score </th><th>Undergrad GPA</th><th>GRE score</th><th>TOEFL Score</th><th>IELTS score</th><th>Email</th><th>City</th><th>State</th><th>Country</th>
 </tr></thead><tbody>";
 		// output data of each row
 		while ( $row = mysqli_fetch_assoc ( $result ) ) {
 			
 			$appl = $row ["AppId"];
-			$apLink = "<a class = \"error\" href=ApplicationDisplay.php?appl=$appl>" . $row ["AppId"] . "</a>";
-			
-			echo "<tr align=\"left\" valign=\"top\" style=\"color:blue\"><td>" . "<h5>" .  $apLink . "</h5>" . "</td><td>" . $row ["deg"] . "</td><td>" . $row ["pname"] . "</td><td>" . $row ["appldate"] . "</td><td>" . $row ["stat"] . "</td></tr>";
+			$apLink = "<a href=RecApplDisplay.php?appl=$appl>" . $row ["AppId"] . "</a>";
+
+echo "<tr align=\"left\" valign=\"top\" style=\"color:blue\"><td>" . "<h5>" .  $apLink . "</h5>" . "</td><td>" . $row ["deg"] . "</td><td>" . $row ["pname"] . "</td><td>" . $row ["appldate"] . "</td><td>" . $row ["stat"] . "</td><td>" . $row ["HighSchoolGPA"] . "</td><td>" . $row ["SATScore"] . "</td><td>" . $row ["UndergradGPA"] . "</td><td>" . $row ["GREscore"] . "</td><td>" . $row ["TOEFLscore"] . "</td><td>" . $row ["IELTSscore"] . "</td><td>" . $row ["Email"] . "</td><td>" . $row ["City"] . "</td><td>" . $row ["State"] . "</td><td>" . $row ["Country"] . "</td></tr>";
 		}
 	} else {
 		echo "<p class= \" error\"> Sorry, No Applications found.</p> ";
@@ -151,10 +107,6 @@ $sql = "SELECT A.ApplicationId AS AppId, P.Degree AS deg, P.ProgName AS pname, A
 			</div>
 		</section>
 	</div>
-	
-
-
-
 
 
 
@@ -172,8 +124,7 @@ $sql = "SELECT A.ApplicationId AS AppId, P.Degree AS deg, P.ProgName AS pname, A
 				<div class="col-md-6 panel">
 					<div class="panel-body">
 						<p class="simplenav">
-							<a href="index.php">Home</a> | <a href="ListofDepts.php">Departments</a>
-							| <a href="Programs.php">Program</a> | <a href="Contact.php">Contact</a>
+							<a href="RecruiterAppReview.php">Home</a> 
 							| <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
 								class="fa fa-facebook"></i></a> <a href="#"><i
 								class="fa fa-dribbble"></i></a> <a href="#"><i

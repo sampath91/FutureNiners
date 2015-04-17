@@ -6,8 +6,8 @@ if (isset ( $_GET ['dept'] )) {
 	$Year = intval($_GET['year']);
 	
 	$sql = "select CompanyName, NoOfStudentsRec from companies where 
-	RecruitedYear = $Year and CompID in ( select c.CompID from deptrecruitscompanies c 
-	join department d on  c.DeptID = d.DeptID where d.DeptName = '$SearchDept')";
+	CompID in ( select c.CompID from deptrecruitscompanies c 
+	join department d on  c.DeptID = d.DeptID where d.DeptName = '$SearchDept' AND RecruitedYear = $Year)";
 	$result = mysqli_query ( $dbcon, $sql );
 	echo "<table class=\"table table-striped\" summary=\"Table\" border=\"1\" cellspacing=\"2\" cellpadding=\"1\">
 		<thead><tr align=\"left\" valign=\"top\" style=\"color:Red;font-style:italic\">
