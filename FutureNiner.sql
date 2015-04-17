@@ -40,18 +40,11 @@ CREATE TABLE department (
 
 -- -----------------------------------------------------
 
-CREATE TABLE deptrecruitscompanies (
-  CompID char(5) NOT NULL,
-  DeptID char(5) NOT NULL,
-  NoOfStudentsRec int(11) NOT NULL,
-  RecruitedYear int(11) NOT NULL,
-  PRIMARY KEY (CompID,DeptID,RecruitedYear),
-  KEY DeptID (DeptID),
-  CONSTRAINT deptrecruitscompanies_ibfk_1 FOREIGN KEY (CompID) REFERENCES companies (CompID),
-  CONSTRAINT deptrecruitscompanies_ibfk_2 FOREIGN KEY (DeptID) REFERENCES department (DeptID)
+CREATE TABLE companies (
+  CompID char(5) NOT NULL DEFAULT '',
+  CompanyName char(50) DEFAULT NULL,
+  PRIMARY KEY (CompID)
 );
-
-
 -- -----------------------------------------------------
 
 CREATE TABLE scholarship (
