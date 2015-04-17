@@ -3,6 +3,7 @@
 	<header id="head">
 		<div class="container">
              <div class="heading-text">							
+							<h1 class="animated flipInY delay1">Welcome to Future Niners at Charlotte</h1>
 							<p>A place where luck meets an opportunity </p>
 						</div>
             
