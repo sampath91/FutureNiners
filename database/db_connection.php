@@ -1,6 +1,6 @@
 <?php
 
-$dbcon=mysqli_connect("localhost","root","root","dbtest")or die("Error " . mysqli_error($dbcon));
+$dbcon=mysqli_connect("localhost","root","root","futureniner")or die("Error " . mysqli_error($dbcon));
 
 define('SALT_LENGTH', 9);
 

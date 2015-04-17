@@ -40,13 +40,17 @@ CREATE TABLE department (
 
 -- -----------------------------------------------------
 
-CREATE TABLE companies (
+CREATE TABLE deptrecruitscompanies (
   CompID char(5) NOT NULL,
-  CompanyName char(50) DEFAULT NULL,
-  NoOfStudentsRec int(11) DEFAULT NULL,
-  RecruitedYear int(11) DEFAULT NULL,
-  PRIMARY KEY (CompID,RecruitedYear)
+  DeptID char(5) NOT NULL,
+  NoOfStudentsRec int(11) NOT NULL,
+  RecruitedYear int(11) NOT NULL,
+  PRIMARY KEY (CompID,DeptID,RecruitedYear),
+  KEY DeptID (DeptID),
+  CONSTRAINT deptrecruitscompanies_ibfk_1 FOREIGN KEY (CompID) REFERENCES companies (CompID),
+  CONSTRAINT deptrecruitscompanies_ibfk_2 FOREIGN KEY (DeptID) REFERENCES department (DeptID)
 );
+
 
 -- -----------------------------------------------------
 
@@ -153,11 +157,14 @@ CREATE TABLE facilities (
 CREATE TABLE deptrecruitscompanies (
   CompID char(5) NOT NULL,
   DeptID char(5) NOT NULL,
-  RecruitedYear int(11) DEFAULT NULL,
+  NoOfStudentsRec int(11) NOT NULL,
+  RecruitedYear int(11) NOT NULL,
   PRIMARY KEY (CompID,DeptID,RecruitedYear),
-  CONSTRAINT deptrecruitscompanies_ibfk_1 FOREIGN KEY (CompID,RecruitedYear) REFERENCES companies (CompID,RecruitedYear),
+  KEY DeptID (DeptID),
+  CONSTRAINT deptrecruitscompanies_ibfk_1 FOREIGN KEY (CompID) REFERENCES companies (CompID),
   CONSTRAINT deptrecruitscompanies_ibfk_2 FOREIGN KEY (DeptID) REFERENCES department (DeptID)
 );
+
 
 -- -----------------------------------------------------
 

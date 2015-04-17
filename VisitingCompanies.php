@@ -52,7 +52,7 @@ include "database/db_connection.php";
 $sql = "select DeptName from department order by DeptName asc";
 $result = mysqli_query ( $dbcon, $sql );
 
-$sql = "select Distinct RecruitedYear from companies order by RecruitedYear asc";
+$sql = "select Distinct RecruitedYear from deptrecruitscompanies order by RecruitedYear asc;";
 $result2 = mysqli_query ( $dbcon, $sql );
 
 echo "<form>";
