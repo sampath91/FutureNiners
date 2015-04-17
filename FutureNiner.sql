@@ -317,16 +317,16 @@ INSERT INTO Department()
 
 INSERT INTO Companies ()
 	values
-    (1, 'Alpha, Inc.', 18, 2010),
-    (2, 'Beta Corp.',  32, 2011),
-    (3, 'Gamma Co.',   13, 2012),
-    (4, 'Delta Inc.',  4, 2013),
-    (5, 'Epsilon',     10, 2014),
-    (6, 'Zeta Comp.',  6, 2015),
-    (7, 'Eta Industr', 9, 2010),
-    (8, 'Iota Inc.',   8, 2011),
-    (9, 'Kappa Co.',   29, 2012),
-    (10,'Lambda Inc.',23, 2013);
+    (1, 'Alpha, Inc.'),
+    (2, 'Beta Corp.'),
+    (3, 'Gamma Co.'),
+    (4, 'Delta Inc.'),
+    (5, 'Epsilon'),
+    (6, 'Zeta Comp.'),
+    (7, 'Eta Industr'),
+    (8, 'Iota Inc.'),
+    (9, 'Kappa Co.'),
+    (10,'Lambda Inc.');
     
 INSERT INTO Scholarship(ScholarshipID, ScholarshipDesc, Amount, Semester_Year,Description)
 	values
@@ -418,18 +418,17 @@ INSERT INTO Student()
     (9, 9),
     (10, 10);
     
-INSERT INTO DeptRecruitsCompanies ()
-	values
-    (1,2,2010),
-    (2,2,2011),
-    (3,3,2012),
-    (4,2,2013),
-    (5,3,2014),
-    (6,3,2015),
-    (7,4,2010),
-    (8,3,2011),
-    (9,5,2012),
-    (10,2,2013);
+INSERT INTO deptrecruitscompanies (CompID,DeptID,NoOfStudentsRec,RecruitedYear) VALUES ('1','2',10,2010);
+INSERT INTO deptrecruitscompanies (CompID,DeptID,NoOfStudentsRec,RecruitedYear) VALUES ('10','2',19,2001);
+INSERT INTO deptrecruitscompanies (CompID,DeptID,NoOfStudentsRec,RecruitedYear) VALUES ('2','2',34,2012);
+INSERT INTO deptrecruitscompanies (CompID,DeptID,NoOfStudentsRec,RecruitedYear) VALUES ('3','3',1,2014);
+INSERT INTO deptrecruitscompanies (CompID,DeptID,NoOfStudentsRec,RecruitedYear) VALUES ('4','2',123,2013);
+INSERT INTO deptrecruitscompanies (CompID,DeptID,NoOfStudentsRec,RecruitedYear) VALUES ('5','3',23,2012);
+INSERT INTO deptrecruitscompanies (CompID,DeptID,NoOfStudentsRec,RecruitedYear) VALUES ('6','3',54,2013);
+INSERT INTO deptrecruitscompanies (CompID,DeptID,NoOfStudentsRec,RecruitedYear) VALUES ('7','4',65,2011);
+INSERT INTO deptrecruitscompanies (CompID,DeptID,NoOfStudentsRec,RecruitedYear) VALUES ('8','3',76,2010);
+INSERT INTO deptrecruitscompanies (CompID,DeptID,NoOfStudentsRec,RecruitedYear) VALUES ('9','5',23,2009);
+
     
 INSERT INTO SchoolEvents ()
 	values
