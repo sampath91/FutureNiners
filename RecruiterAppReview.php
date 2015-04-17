@@ -26,6 +26,24 @@ page_protect ();
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
+	
+	<style>
+.login-panel {
+	margin-top: 150px;
+}
+
+.error {
+	color: red;
+}
+
+.success {
+	color: green;
+}
+
+.todo {
+	color: red;
+}
+</style>
 </head>
 <body>
 	<!-- Fixed navbar -->
@@ -73,7 +91,7 @@ page_protect ();
 				<content class="maincontent"> <br>
 				<div>
 <?php
-
+if(isset($_SESSION ['recid'])){
 $username=$_SESSION['user_name'];
 $sql = "SELECT A.ApplicationId AS AppId, P.Degree AS deg, P.ProgName AS pname, A.ApplicationDATE AS appldate, A.Status AS stat, HighSchoolGPA , SATScore, UndergradGPA, GREscore, TOEFLscore, IELTSscore, Email, City, State, Country FROM Application A, Applies B, Program P, Student S, Users U WHERE A.ApplicationID=B.ApplicationID AND P.ProgID=B.ProgID AND S.SID=B.SID AND S.UserId=U.UserId AND A.RecID = (SELECT RecID FROM Recruiter R, Users U WHERE R.UserID=U.UserID AND U.Username='".$_SESSION['user_name']."');";
 
@@ -92,13 +110,17 @@ $sql = "SELECT A.ApplicationId AS AppId, P.Degree AS deg, P.ProgName AS pname, A
 
 echo "<tr align=\"left\" valign=\"top\" style=\"color:blue\"><td>" . "<h5>" .  $apLink . "</h5>" . "</td><td>" . $row ["deg"] . "</td><td>" . $row ["pname"] . "</td><td>" . $row ["appldate"] . "</td><td>" . $row ["stat"] . "</td><td>" . $row ["HighSchoolGPA"] . "</td><td>" . $row ["SATScore"] . "</td><td>" . $row ["UndergradGPA"] . "</td><td>" . $row ["GREscore"] . "</td><td>" . $row ["TOEFLscore"] . "</td><td>" . $row ["IELTSscore"] . "</td><td>" . $row ["Email"] . "</td><td>" . $row ["City"] . "</td><td>" . $row ["State"] . "</td><td>" . $row ["Country"] . "</td></tr>";
 		}
+		echo "</tbody></table>";
+		echo "*See more details about application by clicking application id";
 	} else {
+		
 		echo "<p class= \" error\"> Sorry, No Applications found.</p> ";
-		echo "Create a new application here - <a href=Apply.php>Apply Now</a>";
+	//	echo "Create a new application here - <a href=Apply.php>Apply Now</a>";
 	}
-	echo "</tbody></table>";
-	echo "*See more details about application by clicking application id";
 
+}else{
+	echo "<p class=\"error\">You should not be here.</p> Please go to <a href=index.php>Home</a>";
+}
 ?>
 </div>
 <br>

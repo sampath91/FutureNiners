@@ -71,10 +71,24 @@ if (isset ( $_POST ['Admit'] )||isset ( $_POST ['Reject'] )) {
     <style>
     
         .btn-reject{color:#fff;background-color:#3d84e6;border-color:#3d84e6}.btn-reject:hover,.btn-reject:focus,.btn-reject:active,.btn-reject.active,.open>.dropdown-toggle.btn-reject{color:#fff;background-color:#FA0505;border-color:#FA0505}.btn-reject:active,.btn-reject.active,.open>.dropdown-toggle.btn-reject{background-image:none}.btn-reject.disabled,.btn-reject[disabled],fieldset[disabled] .btn-reject,.btn-reject.disabled:hover,.btn-reject[disabled]:hover,fieldset[disabled] .btn-reject:hover,.btn-reject.disabled:focus,.btn-reject[disabled]:focus,fieldset[disabled] .btn-reject:focus,.btn-reject.disabled:active,.btn-reject[disabled]:active,fieldset[disabled] .btn-reject:active,.btn-reject.disabled.active,.btn-reject[disabled].active,fieldset[disabled] .btn-reject.active{background-color:#FA0505;border-color:#FA0505}.btn-reject .badge{color:#FA0505;background-color:#fff}.
-    
-        
     </style>
-    
+    <style>
+.login-panel {
+	margin-top: 150px;
+}
+
+.error {
+	color: red;
+}
+
+.success {
+	color: green;
+}
+
+.todo {
+	color: red;
+}
+</style>
     
     
 </head>
@@ -117,7 +131,7 @@ if (isset ( $_POST ['Admit'] )||isset ( $_POST ['Reject'] )) {
 				<content class="maincontent"> <br>
 				<div>
 <?php
-
+if(isset($_SESSION ['recid'])){
 $username=$_SESSION['user_name'];
 $an = $_GET["appl"];
 $sql = "SELECT * from Application where ApplicationId=$an";
@@ -173,7 +187,9 @@ echo "</tbody></table>";
 		</section>
 	</div>
 
-
+<?php }else{
+	echo "<p class=\"error\">You should not be here.</p> Please go to <a href=index.php>Home</a>";
+}?>
 
 
 
