@@ -467,18 +467,18 @@ INSERT INTO OffersAssistantship()
      (3, 3,'Teaching Asst 6002',      'Teaching Asst', 4),
      (3, 7,'Teaching Asst 6003',      'Teaching Asst', 4);
      
-INSERT INTO Research()
-     values
-     (1,5,'Evaluating blood testing techniques', 'Bioanalysis', 12),
-     (2,6,'Data Mining', 'Database Technology', 12),
-     (3,3,'XML Applications', 'Database Technology', 18),
-     (4,9,'Thermo-acoustics', 'Acoustics', 6),
-     (5,10, 'Real Time Simulation', 'Computer Engineering', 3),
-     (6,3,'How to hack any system', 'Network Security', 12),
-     (7,2,'Effect of fat content on quality of ice cream', 'Health', 36),
-     (8,1,'The effects of changing daylight on object', 'Art Science', 3),
-     (9,1,'How to stop spam mail', 'Computer Science', 12),
-     (10,5,'Sinkholes in construction material', 'Construction Engineering', 9);
+
+INSERT INTO research (ResearchID,ProfID,Specialization,Field,Duration) VALUES ('1','8','Evaluating blood testing techniques','Bioanalysis',12);
+INSERT INTO research (ResearchID,ProfID,Specialization,Field,Duration) VALUES ('10','10','Sinkholes in construction material','Construction Engineering',9);
+INSERT INTO research (ResearchID,ProfID,Specialization,Field,Duration) VALUES ('2','13','Data Mining','Database Technology',12);
+INSERT INTO research (ResearchID,ProfID,Specialization,Field,Duration) VALUES ('3','12','XML Applications','Database Technology',18);
+INSERT INTO research (ResearchID,ProfID,Specialization,Field,Duration) VALUES ('4','9','Thermo-acoustics','Acoustics',6);
+INSERT INTO research (ResearchID,ProfID,Specialization,Field,Duration) VALUES ('5','2','Real Time Simulation','Computer Engineering',3);
+INSERT INTO research (ResearchID,ProfID,Specialization,Field,Duration) VALUES ('6','3','How to hack any system','Network Security',12);
+INSERT INTO research (ResearchID,ProfID,Specialization,Field,Duration) VALUES ('7','8','Effect of fat content on quality of ice cream','Health',36);
+INSERT INTO research (ResearchID,ProfID,Specialization,Field,Duration) VALUES ('8','1','The effects of changing daylight on object','Art Science',3);
+INSERT INTO research (ResearchID,ProfID,Specialization,Field,Duration) VALUES ('9','1','How to stop spam mail','Computer Science',12);
+
      
 INSERT INTO Facilities()
 	values
