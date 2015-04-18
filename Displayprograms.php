@@ -3,7 +3,7 @@ include "database/db_connection.php";
 if (isset ( $_GET ['q'] )) {
 	$SearchDept = $_GET ['q'];
 	
-	$sql = "Select d.DeptName,p.Description,p.CreditHours,p.Degree from department d,
+	$sql = "Select d.DeptName,p.Description,p.CreditHours from department d,
 program p where d.DeptID=p.DeptID and p.ProgName='$SearchDept' 
 group by d.DeptName;";
 	$result = mysqli_query ( $dbcon, $sql );
@@ -19,7 +19,7 @@ group by d.DeptName;";
 		while ( $row = mysqli_fetch_assoc ( $result ) ) {
 			echo "<ul>";
 			echo "<li><b>Department Name: </b>" . $row ["DeptName"] . "</li>";
-			echo "<li><b>Degree: </b>" . $row ["Degree"];
+// 			echo "<li><b>Degree: </b>" . $row ["Degree"];
 			echo "<li><b>Credit Hours: "."</b>" . $row ["CreditHours"] . "</li>";
 			echo "<li><b>Description: "."</b>" . $row ["Description"] . "</li>";
 			echo "</ul>";

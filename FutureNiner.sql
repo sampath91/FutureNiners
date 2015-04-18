@@ -382,6 +382,8 @@ orientation, and extraordinary character.'),
 that provides students with the opportunity to develop state-of-the-art technical skills, a practice-ready
 orientation, and extraordinary character.');
 
+ALTER TABLE program DROP COLUMN Degree;
+
 
 INSERT INTO Recruiter ()
 	values
