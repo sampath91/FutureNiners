@@ -486,4 +486,4 @@ input.setCustomValidity('');
 			</div>
 		</div>
 	</div>
-<?php iclude("footer.php")?>
+<?php include("footer.php")?>
