@@ -82,7 +82,6 @@ CREATE TABLE program (
   ProgID char(5) NOT NULL,
   DeptID char(5) DEFAULT NULL,
   ProgName varchar(45) DEFAULT NULL,
-  Degree varchar(15) DEFAULT NULL,
   Amount_Instate float(7,2) DEFAULT NULL,
   Amount_Outstate float(7,2) DEFAULT NULL,
   CreditHours int(11) DEFAULT NULL,
