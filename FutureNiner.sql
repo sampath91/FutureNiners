@@ -598,3 +598,9 @@ insert into Courses()
 		(181, 9, 'Communication Engineering 1',3,'ABasic concepts in electronic communication engineering'),
 		(190,10, 'Civil Engineering 1',3,'Introduction to the concepts that make up civil engineering'),
 		(191,10, 'Civil Engineering 2',3,'Intermediate concepts intended for civil engineering majors');
+
+CREATE INDEX idx_users ON users(username) USING BTREE;
+CREATE INDEX idx_department ON department(DeptName, DeptID) USING BTREE;
+CREATE INDEX idx_program ON program(ProgID) USING BTREE;
+CREATE INDEX idx_application ON application(ApplicationID) USING BTREE;
+CREATE INDEX idx_applies ON applies(ProgID,ApplicationID) USING BTREE;
