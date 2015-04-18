@@ -1,9 +1,9 @@
 -- -----------------------------------------------------
 -- Schema futureniner
 -- -----------------------------------------------------
-DROP Database if exists dbtest;
-CREATE DATABASE dbtest;
-Use dbtest;
+DROP Database if exists futureniner;
+CREATE DATABASE futureniner;
+Use futureniner;
 
 -- -----------------------------------------------------
 
