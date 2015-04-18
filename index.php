@@ -134,31 +134,36 @@
 			<div class="title-box clearfix todo">
 				<h2 class="title-box_primary">Up Coming Events</h2>
 			</div>
-			<div class="list styled custom-list">
-				<ul>
-					<li><a 
-						title="Snatoque penatibus et magnis dis partu rient montes ascetur ridiculus mus."
-						href="#">Mathematics and Computer Science</a></li>
-					<li><a
-						title="Fusce feugiat malesuada odio. Morbi nunc odio gravida at cursus nec luctus."
-						href="#">Mathematics and Philosophy</a></li>
-					<li><a
-						title="Penatibus et magnis dis parturient montes ascetur ridiculus mus."
-						href="#">Philosophy and Modern Languages</a></li>
-					<li><a
-						title="Morbi nunc odio gravida at cursus nec luctus a lorem. Maecenas tristique orci."
-						href="#">History (Ancient and Modern)</a></li>
-					<li><a
-						title="Snatoque penatibus et magnis dis partu rient montes ascetur ridiculus mus."
-						href="#">Classical Archaeology and Ancient History</a></li>
-					<li><a
-						title="Fusce feugiat malesuada odio. Morbi nunc odio gravida at cursus nec luctus."
-						href="#">Physics and Philosophy</a></li>
-				</ul>
+			<div  class="list styled custom-list">
+			<marquee  id='scroll_events' behavior="scroll" direction="up" scrollamount="9"
+onmouseover="this.stop();"
+onmouseout="this.start();">
+				<?php 
+				include "database/db_connection.php";
+				$sql = "SELECT EventDATE, EventDesc FROM futureniner.schoolevents where EventDATE >= curdate()";
+				
+				$result = mysqli_query ( $dbcon, $sql );
+				if (mysqli_num_rows ( $result ) > 0) {
+				
+					echo "<table class=\"table\" summary=\"Table\" border=\"0\"
+						cellspacing=\"2\" cellpadding=\"1\"><tbody>";
+					// output data of each row
+					while ( $row = mysqli_fetch_assoc ( $result ) ) {
+						$eventdate = $row["EventDATE"];
+						$eventdesc = $row["EventDesc"];
+						echo "<tr align=\"left\" valign=\"top\" style=\"color:blue\">
+                        <td>" . $row["EventDATE"] . "</td>
+                        <td>" . $row["EventDesc"] . "</td></tr>";
+					}
+
+					echo "</tbody></table>";
+				}
+				?>
+			
+				</marquee>
 			</div>
 		</div>
 	</div>
 </section>
-
 
 <?php include("footer.php")?>	
