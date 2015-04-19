@@ -93,14 +93,14 @@ page_protect ();
 <?php
 if(isset($_SESSION ['recid'])){
 $username=$_SESSION['user_name'];
-$sql = "SELECT A.ApplicationId AS AppId, P.Degree AS deg, P.ProgName AS pname, A.ApplicationDATE AS appldate, A.Status AS stat, HighSchoolGPA , SATScore, UndergradGPA, GREscore, TOEFLscore, IELTSscore, Email, City, State, Country FROM Application A, Applies B, Program P, Student S, Users U WHERE A.ApplicationID=B.ApplicationID AND P.ProgID=B.ProgID AND S.SID=B.SID AND S.UserId=U.UserId AND A.RecID = (SELECT RecID FROM Recruiter R, Users U WHERE R.UserID=U.UserID AND U.Username='".$_SESSION['user_name']."');";
+$sql = "SELECT A.ApplicationId AS AppId, P.ProgName AS pname, A.ApplicationDATE AS appldate, A.Status AS stat, HighSchoolGPA , SATScore, UndergradGPA, GREscore, TOEFLscore, IELTSscore, Email, City, State, Country FROM Application A, Applies B, Program P, Student S, Users U WHERE A.ApplicationID=B.ApplicationID AND P.ProgID=B.ProgID AND S.SID=B.SID AND S.UserId=U.UserId AND A.RecID = (SELECT RecID FROM Recruiter R, Users U WHERE R.UserID=U.UserID AND U.Username='".$_SESSION['user_name']."');";
 
 	$result = mysqli_query ( $dbcon, $sql );
 	if (mysqli_num_rows ( $result ) > 0) {
 		
 	echo "<table class=\"table table-striped\" summary=\"Table\" border=\"1\" cellspacing=\"2\" cellpadding=\"1\">
 		<thead><tr align=\"left\" valign=\"top\" style=\"color:black;font-style:regular\"><th>Application ID*</th>
-<th>Degree</th><th>Program Name</th><th>Application Date</th><th>Application Status</th><th>HighSchool GPA</th><th>SAT Score </th><th>Undergrad GPA</th><th>GRE score</th><th>TOEFL Score</th><th>IELTS score</th><th>Email</th><th>City</th><th>State</th><th>Country</th>
+<th>Program Name</th><th>Application Date</th><th>Application Status</th><th>HighSchool GPA</th><th>SAT Score </th><th>Undergrad GPA</th><th>GRE score</th><th>TOEFL Score</th><th>IELTS score</th><th>Email</th><th>City</th><th>State</th><th>Country</th>
 </tr></thead><tbody>";
 		// output data of each row
 		while ( $row = mysqli_fetch_assoc ( $result ) ) {
@@ -108,7 +108,7 @@ $sql = "SELECT A.ApplicationId AS AppId, P.Degree AS deg, P.ProgName AS pname, A
 			$appl = $row ["AppId"];
 			$apLink = "<a href=RecApplDisplay.php?appl=$appl>" . $row ["AppId"] . "</a>";
 
-echo "<tr align=\"left\" valign=\"top\" style=\"color:blue\"><td>" . "<h5>" .  $apLink . "</h5>" . "</td><td>" . $row ["deg"] . "</td><td>" . $row ["pname"] . "</td><td>" . $row ["appldate"] . "</td><td>" . $row ["stat"] . "</td><td>" . $row ["HighSchoolGPA"] . "</td><td>" . $row ["SATScore"] . "</td><td>" . $row ["UndergradGPA"] . "</td><td>" . $row ["GREscore"] . "</td><td>" . $row ["TOEFLscore"] . "</td><td>" . $row ["IELTSscore"] . "</td><td>" . $row ["Email"] . "</td><td>" . $row ["City"] . "</td><td>" . $row ["State"] . "</td><td>" . $row ["Country"] . "</td></tr>";
+echo "<tr align=\"left\" valign=\"top\" style=\"color:blue\"><td>" . "<h5>" .  $apLink . "</h5>" . "</td><td>" . $row ["pname"] . "</td><td>" . $row ["appldate"] . "</td><td>" . $row ["stat"] . "</td><td>" . $row ["HighSchoolGPA"] . "</td><td>" . $row ["SATScore"] . "</td><td>" . $row ["UndergradGPA"] . "</td><td>" . $row ["GREscore"] . "</td><td>" . $row ["TOEFLscore"] . "</td><td>" . $row ["IELTSscore"] . "</td><td>" . $row ["Email"] . "</td><td>" . $row ["City"] . "</td><td>" . $row ["State"] . "</td><td>" . $row ["Country"] . "</td></tr>";
 		}
 		echo "</tbody></table>";
 		echo "*See more details about application by clicking application id";

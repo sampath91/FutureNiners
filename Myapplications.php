@@ -116,8 +116,8 @@ page_protect ();
 
 $username=$_SESSION['user_name'];
 $sid = $_SESSION['sid'];
-$sql = "SELECT A.ApplicationId AS AppId, P.Degree AS deg, P.ProgName AS pname, A.ApplicationDATE AS appldate, 
-		A.Status AS stat FROM Application A, Applies B, Program P
+$sql = "SELECT A.ApplicationId AS AppId, P.ProgName AS pname, A.ApplicationDATE AS appldate, 
+		A.Status AS stat FROM application A, applies B, program P
 		 WHERE 
 		A.ApplicationID=B.ApplicationID AND P.ProgID=B.ProgID AND B.SID='$sid'";
 
@@ -126,7 +126,7 @@ $sql = "SELECT A.ApplicationId AS AppId, P.Degree AS deg, P.ProgName AS pname, A
 		
 	echo "<table class=\"table \" summary=\"Table\" border=\"0\" cellspacing=\"2\" cellpadding=\"1\">
 		<thead><tr align=\"left\" valign=\"top\" style=\"color:black;font-style:regular\"><th>Application ID*</th>
-<th>Degree</th><th>Program Name</th><th>Application Date</th><th>Application Status</th>
+<th>Program Name</th><th>Application Date</th><th>Application Status</th>
 </tr></thead><tbody>";
 		// output data of each row
 		while ( $row = mysqli_fetch_assoc ( $result ) ) {
@@ -134,7 +134,7 @@ $sql = "SELECT A.ApplicationId AS AppId, P.Degree AS deg, P.ProgName AS pname, A
 			$appl = $row ["AppId"];
 			$apLink = "<a class = \"error\" href=ApplicationDisplay.php?appl=$appl>" . $row ["AppId"] . "</a>";
 			
-			echo "<tr align=\"left\" valign=\"top\" style=\"color:blue\"><td>" . "<h5>" .  $apLink . "</h5>" . "</td><td>" . $row ["deg"] . "</td><td>" . $row ["pname"] . "</td><td>" . $row ["appldate"] . "</td><td>" . $row ["stat"] . "</td></tr>";
+			echo "<tr align=\"left\" valign=\"top\" style=\"color:blue\"><td>" . "<h5>" .  $apLink . "</h5>" . "</td><td>" . $row ["pname"] . "</td><td>" . $row ["appldate"] . "</td><td>" . $row ["stat"] . "</td></tr>";
 		}
 	} else {
 		echo "<p class= \" error\"> Sorry, No Applications found.</p> ";
