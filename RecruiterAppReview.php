@@ -93,7 +93,7 @@ page_protect ();
 <?php
 if(isset($_SESSION ['recid'])){
 $username=$_SESSION['user_name'];
-$sql = "SELECT A.ApplicationId AS AppId, P.ProgName AS pname, A.ApplicationDATE AS appldate, A.Status AS stat, HighSchoolGPA , SATScore, UndergradGPA, GREscore, TOEFLscore, IELTSscore, Email, City, State, Country FROM Application A, Applies B, Program P, Student S, Users U WHERE A.ApplicationID=B.ApplicationID AND P.ProgID=B.ProgID AND S.SID=B.SID AND S.UserId=U.UserId AND A.RecID = (SELECT RecID FROM Recruiter R, Users U WHERE R.UserID=U.UserID AND U.Username='".$_SESSION['user_name']."');";
+$sql = "SELECT A.ApplicationId AS AppId, P.ProgName AS pname, A.ApplicationDATE AS appldate, A.Status AS stat, HighSchoolGPA , SATScore, UndergradGPA, GREscore, TOEFLscore, IELTSscore, Email, City, State, Country FROM Application A, Applies B, Program P, Student S, Users U WHERE A.ApplicationID=B.ApplicationID AND A.Status <> 'Not Submitted' AND P.ProgID=B.ProgID AND S.SID=B.SID AND S.UserId=U.UserId AND A.RecID = (SELECT RecID FROM Recruiter R, Users U WHERE R.UserID=U.UserID AND U.Username='".$_SESSION['user_name']."')";
 
 	$result = mysqli_query ( $dbcon, $sql );
 	if (mysqli_num_rows ( $result ) > 0) {
