@@ -138,29 +138,29 @@ function toeflfunc() {
 					<div class="col-md-3" align="left">
 						<b>First Name:&nbsp;</b> 
 						<input name="student_fname"
-							class="bluedata" value=<?php echo $user_fname; ?>	readonly>
+							class="bluedata" value="<?php echo $user_fname; ?>"	readonly>
 					</div>
 					<div class="col-md-3" align="left">
 						<b>Middle Name:&nbsp;</b> 
 						<input name="student_mname"
-							class="bluedata" value=<?php echo $user_mname; ?>	readonly>
+							class="bluedata" value="<?php echo $user_mname; ?>"	readonly>
 					</div>
 					<div class="col-md-3" align="left">
 						<b>Last Name:&nbsp;</b> 
 						<input name="student_lname"
-							class="bluedata" value=<?php echo $user_lname; ?> readonly>
+							class="bluedata" value="<?php echo $user_lname; ?>" readonly>
 					</div>
 					<div class="col-md-3" align="left">
 						<b>Application Date:&nbsp;</b> 
 						<input name="Application_date"
-							class="bluedata" value = <?php echo date("Y-m-d"); ?>	readonly>
+							class="bluedata" value = "<?php echo date("Y-m-d"); ?>"	readonly>
 					</div>
 				</div>
 				<br>
 				<div class="row">
 					<div class="col-md-3" align="left">
 						<b>Email:&nbsp;</b> 
-						<input name="student_email" class="bluedata" value=	<?php echo $user_email; ?> readonly>
+						<input name="student_email" class="bluedata" value=	"<?php echo $user_email; ?>" readonly>
 					</div>
 					<div class="col-md-3" align="left">
 					<?php
