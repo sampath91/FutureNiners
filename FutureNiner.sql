@@ -1,9 +1,9 @@
 -- -----------------------------------------------------
 -- Schema futureniner
 -- -----------------------------------------------------
-DROP Database if exists futureniner;
-CREATE DATABASE futureniner;
-Use futureniner;
+DROP Database if exists dbtest;
+CREATE DATABASE dbtest;
+Use dbtest;
 
 -- -----------------------------------------------------
 
@@ -82,6 +82,7 @@ CREATE TABLE program (
   ProgID char(5) NOT NULL,
   DeptID char(5) DEFAULT NULL,
   ProgName varchar(45) DEFAULT NULL,
+  Degree varchar(15) DEFAULT NULL,
   Amount_Instate float(7,2) DEFAULT NULL,
   Amount_Outstate float(7,2) DEFAULT NULL,
   CreditHours int(11) DEFAULT NULL,
@@ -335,52 +336,51 @@ INSERT INTO Scholarship(ScholarshipID, ScholarshipDesc, Amount, Semester_Year,De
     
 Insert INTo Program()
 	values
-	('1', '1',  'UnderGraduation', 440.25,2086.75,72,'The Electrical Engineering Department offers programs leading to bachelors, masters and Ph.D. degrees. Our students acquire a breadth of knowledge in the field of electrical engineering, and a depth of knowledge in a chosen research specialty.'),
-	('2', '1',  'Masters', 501.00,2037.00,30,'The Electrical Engineering Department offers programs leading to bachelors, masters and Ph.D. degrees. Our students acquire a breadth of knowledge in the field of electrical engineering, and a depth of knowledge in a chosen research specialty.'),
-	('3', '1',  'Doctorate', 1001.50,4038.7,12,'The Electrical Engineering Department offers programs leading to bachelors, masters and Ph.D. degrees. Our students acquire a breadth of knowledge in the field of electrical engineering, and a depth of knowledge in a chosen research specialty.'),
+	('1', '1',  'UnderGraduation','BS', 440.25,2086.75,72,'The Electrical Engineering Department offers programs leading to bachelors, masters and Ph.D. degrees. Our students acquire a breadth of knowledge in the field of electrical engineering, and a depth of knowledge in a chosen research specialty.'),
+	('2', '1',  'Masters','MS', 501.00,2037.00,30,'The Electrical Engineering Department offers programs leading to bachelors, masters and Ph.D. degrees. Our students acquire a breadth of knowledge in the field of electrical engineering, and a depth of knowledge in a chosen research specialty.'),
+	('3', '1',  'Doctorate','PHD', 1001.50,4038.7,12,'The Electrical Engineering Department offers programs leading to bachelors, masters and Ph.D. degrees. Our students acquire a breadth of knowledge in the field of electrical engineering, and a depth of knowledge in a chosen research specialty.'),
     
-	('4', '2',  'UnderGraduation', 440.25,2086.75,72,'Computer Science is the cornerstone of modern information technology.  It has revolutionized how we learn, communicate, entertain, conduct business, perform research, and practice medicine.  This information revolution is just beginning and is providing computer scientists with nearly limitless opportunities to make satisfying and enriching contributions to society.'),
-	('5', '2',  'Masters', 501.00,2037.00,30,'Computer Science is the cornerstone of modern information technology.  It has revolutionized how we learn, communicate, entertain, conduct business, perform research, and practice medicine.  This information revolution is just beginning and is providing computer scientists with nearly limitless opportunities to make satisfying and enriching contributions to society.'),
-	('6', '2',  'Doctorate', 1001.50,4038.7,12,'Computer Science is the cornerstone of modern information technology.  It has revolutionized how we learn, communicate, entertain, conduct business, perform research, and practice medicine.  This information revolution is just beginning and is providing computer scientists with nearly limitless opportunities to make satisfying and enriching contributions to society.'),	
+	('4', '2',  'UnderGraduation','BS', 440.25,2086.75,72,'Computer Science is the cornerstone of modern information technology.  It has revolutionized how we learn, communicate, entertain, conduct business, perform research, and practice medicine.  This information revolution is just beginning and is providing computer scientists with nearly limitless opportunities to make satisfying and enriching contributions to society.'),
+	('5', '2',  'Masters','MS', 501.00,2037.00,30,'Computer Science is the cornerstone of modern information technology.  It has revolutionized how we learn, communicate, entertain, conduct business, perform research, and practice medicine.  This information revolution is just beginning and is providing computer scientists with nearly limitless opportunities to make satisfying and enriching contributions to society.'),
+	('6', '2',  'Doctorate','PHD', 1001.50,4038.7,12,'Computer Science is the cornerstone of modern information technology.  It has revolutionized how we learn, communicate, entertain, conduct business, perform research, and practice medicine.  This information revolution is just beginning and is providing computer scientists with nearly limitless opportunities to make satisfying and enriching contributions to society.'),	
     
-    ('7', '3',  'UnderGraduation', 440.25,2086.75,72,'The Department of Information Technology is primarily focused on (a) the study of technologies and methodologies for information system architecture, design, implementation, integration, and management with particular emphasis on system security and (b) the modeling and analysis of natural and human-generated systems such as weather, biological systems, markets, and supply chain.'),
-	('8', '3',  'Masters', 501.00,2037.00,30,'The Department of Information Technology is primarily focused on (a) the study of technologies and methodologies for information system architecture, design, implementation, integration, and management with particular emphasis on system security and (b) the modeling and analysis of natural and human-generated systems such as weather, biological systems, markets, and supply chain.'),
-	('9', '3',  'Doctorate', 1001.50,4038.7,12,'The Department of Information Technology is primarily focused on (a) the study of technologies and methodologies for information system architecture, design, implementation, integration, and management with particular emphasis on system security and (b) the modeling and analysis of natural and human-generated systems such as weather, biological systems, markets, and supply chain.'),
+    ('7', '3',  'UnderGraduation','BS', 440.25,2086.75,72,'The Department of Information Technology is primarily focused on (a) the study of technologies and methodologies for information system architecture, design, implementation, integration, and management with particular emphasis on system security and (b) the modeling and analysis of natural and human-generated systems such as weather, biological systems, markets, and supply chain.'),
+	('8', '3',  'Masters','MS', 501.00,2037.00,30,'The Department of Information Technology is primarily focused on (a) the study of technologies and methodologies for information system architecture, design, implementation, integration, and management with particular emphasis on system security and (b) the modeling and analysis of natural and human-generated systems such as weather, biological systems, markets, and supply chain.'),
+	('9', '3',  'Doctorate','PHD', 1001.50,4038.7,12,'The Department of Information Technology is primarily focused on (a) the study of technologies and methodologies for information system architecture, design, implementation, integration, and management with particular emphasis on system security and (b) the modeling and analysis of natural and human-generated systems such as weather, biological systems, markets, and supply chain.'),
 	
-    ('10', '4',  'UnderGraduation', 440.25,2086.75,72,'Department of Mechanical engineering is the discipline that applies the principles of engineering, physics, and materials science for the design, analysis, manufacturing, and maintenance of mechanical systems. It is the branch of engineering that involves the design, production, and operation of machinery.It is one of the oldest and broadest of the engineering disciplines.'),
-	('11', '4',  'Masters', 501.00,2037.00,30,'Department of Mechanical engineering is the discipline that applies the principles of engineering, physics, and materials science for the design, analysis, manufacturing, and maintenance of mechanical systems. It is the branch of engineering that involves the design, production, and operation of machinery.It is one of the oldest and broadest of the engineering disciplines.'),
-	('12', '4',  'Doctorate', 1001.50,4038.7,12,'Department of Mechanical engineering is the discipline that applies the principles of engineering, physics, and materials science for the design, analysis, manufacturing, and maintenance of mechanical systems. It is the branch of engineering that involves the design, production, and operation of machinery.It is one of the oldest and broadest of the engineering disciplines.'),
+    ('10', '4',  'UnderGraduation','BS', 440.25,2086.75,72,'Department of Mechanical engineering is the discipline that applies the principles of engineering, physics, and materials science for the design, analysis, manufacturing, and maintenance of mechanical systems. It is the branch of engineering that involves the design, production, and operation of machinery.It is one of the oldest and broadest of the engineering disciplines.'),
+	('11', '4',  'Masters','MS', 501.00,2037.00,30,'Department of Mechanical engineering is the discipline that applies the principles of engineering, physics, and materials science for the design, analysis, manufacturing, and maintenance of mechanical systems. It is the branch of engineering that involves the design, production, and operation of machinery.It is one of the oldest and broadest of the engineering disciplines.'),
+	('12', '4',  'Doctorate','PHD', 1001.50,4038.7,12,'Department of Mechanical engineering is the discipline that applies the principles of engineering, physics, and materials science for the design, analysis, manufacturing, and maintenance of mechanical systems. It is the branch of engineering that involves the design, production, and operation of machinery.It is one of the oldest and broadest of the engineering disciplines.'),
 	
-    ('13', '5',  'UnderGraduation', 440.25,2086.75,72,'The Department of Art aims to foster innovative and thoughtful artistic practice, scholarship, and education.'),
-	('14', '5',  'Masters', 501.00,2037.00,30,'The Department of Art aims to foster innovative and thoughtful artistic practice, scholarship, and education.'),
-	('15', '5',  'Doctorate', 1001.50,4038.7,12,'The Department of Art aims to foster innovative and thoughtful artistic practice, scholarship, and education.'),
+    ('13', '5',  'UnderGraduation','BS', 440.25,2086.75,72,'The Department of Art aims to foster innovative and thoughtful artistic practice, scholarship, and education.'),
+	('14', '5',  'Masters','MS', 501.00,2037.00,30,'The Department of Art aims to foster innovative and thoughtful artistic practice, scholarship, and education.'),
+	('15', '5',  'Doctorate','PHD', 1001.50,4038.7,12,'The Department of Art aims to foster innovative and thoughtful artistic practice, scholarship, and education.'),
 	
-    ('16', '6',  'UnderGraduation', 440.25,2086.75,72,'The humanities are academic disciplines that study human culture. The humanities use methods that are primarily critical, or speculative, and have a significant historical element as distinguished from the mainly empirical approaches of the natural sciences.'),
-	('17', '6',  'Masters', 501.00,2037.00,30,'The humanities are academic disciplines that study human culture. The humanities use methods that are primarily critical, or speculative, and have a significant historical element as distinguished from the mainly empirical approaches of the natural sciences.'),
-	('18', '6',  'Doctorate', 1001.50,4038.7,12,'The humanities are academic disciplines that study human culture. The humanities use methods that are primarily critical, or speculative, and have a significant historical element as distinguished from the mainly empirical approaches of the natural sciences.'),
+    ('16', '6',  'UnderGraduation','BS', 440.25,2086.75,72,'The humanities are academic disciplines that study human culture. The humanities use methods that are primarily critical, or speculative, and have a significant historical element as distinguished from the mainly empirical approaches of the natural sciences.'),
+	('17', '6',  'Masters','MS', 501.00,2037.00,30,'The humanities are academic disciplines that study human culture. The humanities use methods that are primarily critical, or speculative, and have a significant historical element as distinguished from the mainly empirical approaches of the natural sciences.'),
+	('18', '6',  'Doctorate','PHD', 1001.50,4038.7,12,'The humanities are academic disciplines that study human culture. The humanities use methods that are primarily critical, or speculative, and have a significant historical element as distinguished from the mainly empirical approaches of the natural sciences.'),
 	
-    ('19', '7',  'UnderGraduation', 440.25,2086.75,72,'The practice of law has become more entwined with the business world, and tomorrowâ€™s leaders will require a deep understanding of both environments. This program provides an opportunity for our students to broaden their perspectives through access to one of the leading programs in the country.'),
-	('20', '7',  'Masters', 501.00,2037.00,30,'The practice of law has become more entwined with the business world, and tomorrowâ€™s leaders will require a deep understanding of both environments. This program provides an opportunity for our students to broaden their perspectives through access to one of the leading programs in the country.'),
-	('21', '7',  'Doctorate', 1001.50,4038.7,12,'The practice of law has become more entwined with the business world, and tomorrowâ€™s leaders will require a deep understanding of both environments. This program provides an opportunity for our students to broaden their perspectives through access to one of the leading programs in the country.'),
+    ('19', '7',  'UnderGraduation','BS', 440.25,2086.75,72,'The practice of law has become more entwined with the business world, and tomorrowâ€™s leaders will require a deep understanding of both environments. This program provides an opportunity for our students to broaden their perspectives through access to one of the leading programs in the country.'),
+	('20', '7',  'Masters','MS', 501.00,2037.00,30,'The practice of law has become more entwined with the business world, and tomorrowâ€™s leaders will require a deep understanding of both environments. This program provides an opportunity for our students to broaden their perspectives through access to one of the leading programs in the country.'),
+	('21', '7',  'Doctorate','PHD', 1001.50,4038.7,12,'The practice of law has become more entwined with the business world, and tomorrowâ€™s leaders will require a deep understanding of both environments. This program provides an opportunity for our students to broaden their perspectives through access to one of the leading programs in the country.'),
 	
-    ('22', '8',  'UnderGraduation', 440.25,2086.75,72,'Biotechnology is the application of scientific and engineering principles to the processing of materials by biological agents to provide goods and services. From its inception, biotechnology has maintained a close relationship with society.'),
-	('23', '8',  'Masters', 501.00,2037.00,30,'Biotechnology is the application of scientific and engineering principles to the processing of materials by biological agents to provide goods and services. From its inception, biotechnology has maintained a close relationship with society.'),
-	('24', '8',  'Doctorate', 1001.50,4038.7,12,'Biotechnology is the application of scientific and engineering principles to the processing of materials by biological agents to provide goods and services. From its inception, biotechnology has maintained a close relationship with society.'),
+    ('22', '8',  'UnderGraduation','BS', 440.25,2086.75,72,'Biotechnology is the application of scientific and engineering principles to the processing of materials by biological agents to provide goods and services. From its inception, biotechnology has maintained a close relationship with society.'),
+	('23', '8',  'Masters','MS', 501.00,2037.00,30,'Biotechnology is the application of scientific and engineering principles to the processing of materials by biological agents to provide goods and services. From its inception, biotechnology has maintained a close relationship with society.'),
+	('24', '8',  'Doctorate','PHD', 1001.50,4038.7,12,'Biotechnology is the application of scientific and engineering principles to the processing of materials by biological agents to provide goods and services. From its inception, biotechnology has maintained a close relationship with society.'),
 	
-    ('25', '9',  'UnderGraduation', 440.25,2086.75,72,'Electronics and Communications Engineering, is an engineering discipline which utilizes non-linear and active electrical components to design electronic circuits, devices and systems. The discipline typically also designs passive electrical components, usually based on printed circuit boards.'),
-	('26', '9',  'Masters', 501.00,2037.00,30,'Electronics and Communications Engineering, is an engineering discipline which utilizes non-linear and active electrical components to design electronic circuits, devices and systems. The discipline typically also designs passive electrical components, usually based on printed circuit boards.'),
-	('27', '9',  'Doctorate', 1001.50,4038.7,12,'Electronics and Communications Engineering, is an engineering discipline which utilizes non-linear and active electrical components to design electronic circuits, devices and systems. The discipline typically also designs passive electrical components, usually based on printed circuit boards.'),
+    ('25', '9',  'UnderGraduation','BS', 440.25,2086.75,72,'Electronics and Communications Engineering, is an engineering discipline which utilizes non-linear and active electrical components to design electronic circuits, devices and systems. The discipline typically also designs passive electrical components, usually based on printed circuit boards.'),
+	('26', '9',  'Masters','MS', 501.00,2037.00,30,'Electronics and Communications Engineering, is an engineering discipline which utilizes non-linear and active electrical components to design electronic circuits, devices and systems. The discipline typically also designs passive electrical components, usually based on printed circuit boards.'),
+	('27', '9',  'Doctorate','PHD', 1001.50,4038.7,12,'Electronics and Communications Engineering, is an engineering discipline which utilizes non-linear and active electrical components to design electronic circuits, devices and systems. The discipline typically also designs passive electrical components, usually based on printed circuit boards.'),
 	
-    ('28', '10',  'UnderGraduation', 440.25,2086.75,72,'Our mission is to deliver bachelors, masters, and doctoral programs in a research intensive environment
+    ('28', '10',  'UnderGraduation','BS', 440.25,2086.75,72,'Our mission is to deliver bachelors, masters, and doctoral programs in a research intensive environment
 that provides students with the opportunity to develop state-of-the-art technical skills, a practice-ready
 orientation, and extraordinary character.'),
-	('29', '10',  'Masters', 501.00,2037.00,30,'Our mission is to deliver bachelors, masters, and doctoral programs in a research intensive environment
+	('29', '10',  'Masters','MS', 501.00,2037.00,30,'Our mission is to deliver bachelors, masters, and doctoral programs in a research intensive environment
 that provides students with the opportunity to develop state-of-the-art technical skills, a practice-ready
 orientation, and extraordinary character.'),
-	('30', '10',  'Doctorate', 1001.50,4038.7,12,'Our mission is to deliver bachelors, masters, and doctoral programs in a research intensive environment
+	('30', '10',  'Doctorate','PHD', 1001.50,4038.7,12,'Our mission is to deliver bachelors, masters, and doctoral programs in a research intensive environment
 that provides students with the opportunity to develop state-of-the-art technical skills, a practice-ready
 orientation, and extraordinary character.');
-
 
 
 INSERT INTO Recruiter ()
@@ -597,9 +597,3 @@ insert into Courses()
 		(181, 9, 'Communication Engineering 1',3,'ABasic concepts in electronic communication engineering'),
 		(190,10, 'Civil Engineering 1',3,'Introduction to the concepts that make up civil engineering'),
 		(191,10, 'Civil Engineering 2',3,'Intermediate concepts intended for civil engineering majors');
-
-CREATE INDEX idx_users ON users(username) USING BTREE;
-CREATE INDEX idx_department ON department(DeptName, DeptID) USING BTREE;
-CREATE INDEX idx_program ON program(ProgID) USING BTREE;
-CREATE INDEX idx_application ON application(ApplicationID) USING BTREE;
-CREATE INDEX idx_applies ON applies(ProgID,ApplicationID) USING BTREE;

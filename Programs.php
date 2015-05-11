@@ -36,7 +36,7 @@ function showcontent(str) {
 	<div>
 		<section class="container">
 			<div class="row">
-				<!-- Article main content -->
+				<!-- Article main  -->
 				<content class="maincontent"> <br>
 					<div>
 					<?php

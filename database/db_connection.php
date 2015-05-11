@@ -1,6 +1,21 @@
 <?php
+define('DB_HOST', getenv('OPENSHIFT_MYSQL_DB_HOST'));
+define('DB_PORT', getenv('OPENSHIFT_MYSQL_DB_PORT'));
+define('DB_USER', getenv('OPENSHIFT_MYSQL_DB_USERNAME'));
+define('DB_PASS', getenv('OPENSHIFT_MYSQL_DB_PASSWORD'));
+define('DB_NAME', getenv('OPENSHIFT_APP_NAME'));
 
-$dbcon=mysqli_connect("localhost","root","root","futureniner")or die("Error " . mysqli_error($dbcon));
+//$dbhost = constant("DB_HOST"); // Host name 
+//$dbport = constant("DB_PORT"); // Host port
+//$dbusername = constant("DB_USER"); // Mysql username 
+//$dbpassword = constant("DB_PASS"); // Mysql password 
+//$db_name = constant("DB_NAME"); // Database name 
+
+$dbcon = mysqli_connect(DB_HOST, DB_USER, DB_PASS, "", DB_PORT) or die("Error: " . mysqli_error($dbcon));
+mysqli_select_db($dbcon, DB_NAME) or die("Error: " . mysqli_error($dbcon));
+
+
+//$dbcon=mysqli_connect(DB_HOST,"root","root","futureniner")or die("Error " . mysqli_error($dbcon));
 
 define('SALT_LENGTH', 9);
 

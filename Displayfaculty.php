@@ -5,7 +5,7 @@ if (isset ( $_GET ['q'] )) {
 	
 	$sql = "select concat(concat(fname,' '),lname) as fname, Email, DESCRIPTION, 
 		Address from professor where DeptID IN (select DeptID
-		from Department where DeptName = '$SearchDept')";
+		from department where DeptName = '$SearchDept')";
 	$result = mysqli_query ( $dbcon, $sql );
 	// echo "<table class=\"table table-striped\" summary=\"Table\" border=\"1\" cellspacing=\"2\" cellpadding=\"1\">
 	// <thead><tr align=\"left\" valign=\"top\" style=\"color:Red;font-style:italic\"><th>Assistantship Name</th>

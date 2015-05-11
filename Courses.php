@@ -24,7 +24,7 @@ if (isset ( $_POST ['courses'] )) {
 	$SearchDept = $data ['deptname'];
 	$sql = "select CourseID, COURSE_TITLE, CREDIT_HOURS, DESCRIPTION
  from courses where DeptID IN (select DeptID
-from Department where DeptName = '$SearchDept');";
+from department where DeptName = '$SearchDept');";
 	$result = mysqli_query ( $dbcon, $sql );
 	// echo "<table class=\"table table-striped\" summary=\"Table\" border=\"1\" cellspacing=\"2\" cellpadding=\"1\">
 	// <thead><tr align=\"left\" valign=\"top\" style=\"color:Red;font-style:italic\"><th>Assistantship Name</th>

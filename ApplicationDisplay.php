@@ -225,7 +225,7 @@ function toeflfunc() {
 						data-toggle="dropdown">Programs<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="Tuitionfee.php">Tuition Fees</a></li>
-							<li><a href="programs.php">Program Listing</a></li>
+							<li><a href="Programs.php">Program Listing</a></li>
 						</ul>
 					
 					<li>

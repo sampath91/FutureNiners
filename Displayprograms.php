@@ -19,7 +19,6 @@ group by d.DeptName;";
 		while ( $row = mysqli_fetch_assoc ( $result ) ) {
 			echo "<ul>";
 			echo "<li><b>Department Name: </b>" . $row ["DeptName"] . "</li>";
-// 			echo "<li><b>Degree: </b>" . $row ["Degree"];
 			echo "<li><b>Credit Hours: "."</b>" . $row ["CreditHours"] . "</li>";
 			echo "<li><b>Description: "."</b>" . $row ["Description"] . "</li>";
 			echo "</ul>";

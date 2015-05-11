@@ -9,10 +9,10 @@ if (isset ( $_POST ['Admit'] )||isset ( $_POST ['Reject'] )) {
 	$appID = $_POST["appid"];
 	
 	if ($_POST ['Admit'] == 'Admit') {
-		$check_user_sql = "update Application set Status = 'Admitted' where applicationID ='$appID'";
+		$check_user_sql = "update application set Status = 'Admitted' where applicationID ='$appID'";
 		
 		$result = mysqli_query ( $dbcon, $check_user_sql );
-		header('Location:/futureniners/recruiterappreview.php');
+		header('Location: RecruiterAppReview.php');
 		// Match row found with more than 1 results - the user is authenticated.
 //		if (mysqli_num_rows ( $result ) > 0) {
 //			
@@ -26,10 +26,10 @@ if (isset ( $_POST ['Admit'] )||isset ( $_POST ['Reject'] )) {
 
 
 	if ($_POST ['Reject'] == 'Reject') {
-		$check_user_sql = "update Application set Status = 'Rejected' where applicationID ='$appID'";
+		$check_user_sql = "update application set Status = 'Rejected' where applicationID ='$appID'";
 		
 		$result = mysqli_query ( $dbcon, $check_user_sql );
-		header('Location:/futureniners/recruiterappreview.php');
+		header('Location: RecruiterAppReview.php');
 		
 		// Match row found with more than 1 results - the user is authenticated.
 //		if (mysqli_num_rows ( $result ) > 0) {
@@ -103,12 +103,12 @@ if (isset ( $_POST ['Admit'] )||isset ( $_POST ['Reject'] )) {
 					<span class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="RecruiterAppReview.php"> <img
+				<a class="navbar-brand" href="recruiterappreview.php"> <img
 					src="assets/images/logo.png" alt="Techro HTML5 template"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right mainNav">
-					<li class="active"><a href="RecruiterAppReview.php">Home</a></li>
+					<li class="active"><a href="recruiterappreview.php">Home</a></li>
 					<li><a href="logout.php">Sign Out</a></li>
 				</ul>
 			</div>
@@ -134,7 +134,7 @@ if (isset ( $_POST ['Admit'] )||isset ( $_POST ['Reject'] )) {
 if(isset($_SESSION ['recid'])){
 $username=$_SESSION['user_name'];
 $an = $_GET["appl"];
-$sql = "SELECT * from Application where ApplicationId=$an";
+$sql = "SELECT * from application where ApplicationId=$an";
 
 $result = mysqli_query ( $dbcon, $sql );
 
@@ -164,7 +164,7 @@ echo "<br></br>";
 		echo "<hr>";
 	}
 } else {
-	echo "<p class= \" error\"> Sorry, No Departments found</p>";
+	echo "<p class= \" error\"> Sorry, No Records found</p>";
 }
 echo "</tbody></table>";
 

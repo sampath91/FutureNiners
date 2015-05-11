@@ -22,7 +22,7 @@
 <?php
 include "database/db_connection.php";
 
-$sql = "select DeptName, DeptHead, Contact from Department";
+$sql = "select DeptName, DeptHead, Contact from department";
 $result = mysqli_query ( $dbcon, $sql );
 // echo "<table class=\"table table-striped\" summary=\"Table\" border=\"1\" cellspacing=\"2\" cellpadding=\"1\">
 // <thead><tr align=\"left\" valign=\"top\" style=\"color:Red;font-style:italic\"><th>Assistantship Name</th>

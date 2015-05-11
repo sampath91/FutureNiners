@@ -56,7 +56,7 @@
 				 and professional goals.</p>
 					</p>
 				<p>
-					<a href="listofdepts.php"><em>Learn More</em></a>
+					<a href="ListofDepts.php"><em>Learn More</em></a>
 				</p>
 			</div>
 			<!--grey box -->
@@ -140,7 +140,7 @@ onmouseover="this.stop();"
 onmouseout="this.start();">
 				<?php 
 				include "database/db_connection.php";
-				$sql = "SELECT EventDATE, EventDesc FROM futureniner.schoolevents where EventDATE >= curdate()";
+				$sql = "SELECT EventDATE, EventDesc FROM schoolevents where EventDATE >= curdate()";
 				
 				$result = mysqli_query ( $dbcon, $sql );
 				if (mysqli_num_rows ( $result ) > 0) {
